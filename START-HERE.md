@@ -57,5 +57,5 @@ when useful, but you do not need to read every file.
 > Nearby discoveries are offered for the task list and get their own approval.
 > Personal checks stay in these skills; they are not Ente tooling PRs or proof that
 > unmeasured behavior works. On 22 September Aman authorized starting only the Mac
-> mini's five-package SwiftPM pickup now. This Mac's pickup is paused. Review
+> mini's five-package SwiftPM pickup now. The MacBook Air's pickup is paused. Review
 > collection and cleanup have not been brought forward; see [status](STATUS.md).

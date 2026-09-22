@@ -9,5 +9,7 @@ Skills and task plans/reviews are versioned here. TODO.md is generated from the
 machine-owned queues. Credentials, app settings, automation state, raw logs,
 screenshots, build artifacts and local backups stay on their original machine.
 
-Setup status: the MacBook Air snapshot is published. Mac mini import and the
-first two-machine round trip still need verification; do not call setup complete.
+Setup status: MacBook Air sync is installed and verified (every five minutes
+while awake and logged in). Mac mini is waiting for access to this private repo;
+its current notes and skills have not yet been imported. The real two-machine
+round trip remains unverified.
