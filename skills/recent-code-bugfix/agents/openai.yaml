@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recent Code Bugfix"
+  short_description: "Fix Ente bugs from last-week commits."
+  default_prompt: "Use $recent-code-bugfix to find and fix one bug introduced by my recent Ente commits, then verify it with the smallest targeted check."

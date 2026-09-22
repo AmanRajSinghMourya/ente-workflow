@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ente Mobile UI PR Workflow"
+  short_description: "Implement and review Ente mobile UI PRs"
+  default_prompt: "Use $ente-mobile-ui-pr-workflow to implement and prepare this Ente mobile UI change for review."

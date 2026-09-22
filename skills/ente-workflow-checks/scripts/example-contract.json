@@ -1,0 +1,15 @@
+{
+  "branch": "REPLACE_WITH_TASK_BRANCH",
+  "target_repo": "OWNER/REPOSITORY",
+  "head_repo": "OWNER/REPOSITORY",
+  "base_branch": "main",
+  "remote": "origin",
+  "push_url": "REPLACE_WITH_EXACT_PUSH_URL",
+  "api_login": "REPLACE_WITH_AUTHORIZED_GITHUB_LOGIN",
+  "author": {
+    "name": "REPLACE_WITH_COMMIT_NAME",
+    "email": "REPLACE_WITH_COMMIT_EMAIL"
+  },
+  "allowed_paths": ["REPLACE_WITH_TASK_SCOPE"],
+  "expected_commits": ["REPLACE_WITH_EACH_FULL_INTENDED_COMMIT_SHA"]
+}
