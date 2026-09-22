@@ -1,5 +1,15 @@
 # Mac mini setup
 
+## Consolidation verified — latest
+
+Aman explicitly approved retaining only /Users/aman/Development/ente. Exact /Users/aman/Development/ente-2 is deleted after stopping its task helpers and idle terminal. Retained ente is clean main ef563ca9194a7c74336a331771cbb193ae52e466, with no other local branches or linked worktrees. Removed three further task branches (all, aman/server-drop-logging and the retired checkout's aman/locker-sync-fix), for eight task branches total across both cleanup passes. The retired checkout occupied 1.31 GiB allocated; filesystem free space increased 1.13 GiB in this pass. Existing compact recovery still verifies against retained ente. Credentials and local config were preserved separately under /Users/aman/.local/share/ente-preserved-local-config-20260922, never uploaded.
+
+All 11 pilot rows are cancelled and hidden from active list/claim/panel; history stays in the queue and final task records. Minimal cancellation helper change is on private branch aman/mac-mini-consolidation at 211e7ae, based on source main600fe73: queue.py plus two test files only. Observed missing-state test failures first; all31queue/shared tests,24sync tests and7UI tests pass. Current dispatch.json contains no old tasks and only ente routing; old assignment data is retained in dispatch-20260922-cancelled.json.
+
+Pickup remains PAUSED with an ente-only prompt and no old pilot allowlist; the other schedules and control.json hold/audit policy are unchanged. Personal Codex/Claude routing points only to ente; the retired Codex project config section is removed. All identified old task chats are archived. Saved ente-2 sidebar project entry is still present: native computer control explicitly blocks com.openai.codex for safety and no project-removal API is exposed. User can remove its saved entry through the project's menu.
+
+Waiting for source-owned main reconciliation before live Git sync installation. Mini Obsidian is unlocked and opened to old setup/2026-09-22/SETUP; controls are not installed/enabled yet. This is a direct UI observation, not a deployed-source claim. Historical status below is superseded.
+
 Private workflow access works for aman-pilot (WRITE). The original import was pushed on aman/mac-mini-import at c018c0a, and this commit updates the final cleanup status and mini queue/task records. The live vault remains authoritative. Source hub must reconcile portable main with the raw mini skill differences before the live sync/controls installation; no LaunchAgent or Obsidian controls have been installed yet. Source-task messaging is unavailable cross-host, so this existing status record and task title are the handoff.
 
 Aman's one-time local task cleanup is complete: six secondary worktrees and five associated local branches removed; eight relevant tasks archived, including the already archived slideshow task. Five SwiftPM queue rows are deferred/cancelled by user, never done. Pickup remains PAUSED; review-learning and cleanup remain PAUSED. control.json still holds 2026-09-23T12:30:00Z and audit-only cleanup. Do not recreate abandoned tasks from historical pilot authorization.
