@@ -1,6 +1,6 @@
 # Q003: open_file_ios SwiftPM readiness
 
-**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-recovery-20260922T075859Z`.
 
 Chat: [Q003](codex://threads/01a0c73b-4733-76a3-a6c5-655aa04909d4).
 Assignment: local; project local-ac1dc9d855099b51090b99fd92b5a561; primary checkout `/Users/aman/Development/ente`. Never edit or switch primary checkout.

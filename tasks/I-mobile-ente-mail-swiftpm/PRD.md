@@ -1,6 +1,6 @@
 # SwiftPM: ente_mail
 
-**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-recovery-20260922T075859Z`.
 
 Queue: Q001. Assigned host: local. Project: local-ac1dc9d855099b51090b99fd92b5a561.
 Assigned checkout: `/Users/aman/Development/ente`. Do not change this assignment on retry.

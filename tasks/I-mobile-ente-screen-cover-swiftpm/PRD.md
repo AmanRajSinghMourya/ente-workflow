@@ -1,6 +1,6 @@
 # SwiftPM: ente_screen_cover
 
-**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-recovery-20260922T075859Z`.
 
 Queue: Q002. [Task](codex://threads/01a0c739-e967-7e10-b51f-441b1226063f).
 Host: local. Project: local-a0f48e7f2a6d317290c1ab9e6791ed49.

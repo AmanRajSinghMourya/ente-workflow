@@ -1,6 +1,6 @@
 # SwiftPM: ua_client_hints
 
-**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-recovery-20260922T075859Z`.
 
 Queue Q006 · [Codex task](codex://threads/01a0c73b-4eeb-7c31-af6a-fe775f2970c3).
 Host local; project local-ac1dc9d855099b51090b99fd92b5a561; assigned checkout `/Users/aman/Development/ente`.

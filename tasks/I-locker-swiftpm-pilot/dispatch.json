@@ -165,7 +165,7 @@
   "batch_status": "cancelled_by_user",
   "cleanup": {
     "status": "complete",
-    "recovery_path": "/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z",
+    "recovery_path": "/Users/aman/Documents/Codex/ente-recovery-20260922T075859Z",
     "source_recovery_bytes": 106045,
     "primary_checkouts_preserved": true,
     "worktrees_removed": 6,
