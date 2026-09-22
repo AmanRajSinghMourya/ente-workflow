@@ -157,6 +157,20 @@ These commands check document bytes/freshness and actual change size, not qualit
   This agent verification happens before final code approval; the post-PR simulator
   question below is Aman's own walkthrough. Respect a task-specific instruction
   that Aman will handle simulator verification himself.
+  For login, reuse the dedicated test account in this host's
+  `~/.config/ente-workflow/mobile-test-account.json` (`email`, `password`). Aman
+  authorizes its use for mobile verification without repeated approval. Keep the
+  credential file local with mode 0600; share its path, not its contents, with
+  reviewers or other tasks. Do not put credentials in Git or task evidence.
+  Handle iOS Simulator lock screens without asking Aman to unlock them. Identify
+  whether it is the simulator device lock or Ente's app lock. Use supported
+  simulator controls, a recorded test PIN, or configured simulated biometrics;
+  the account password is not an assumed device passcode or app PIN. If an unknown
+  app PIN blocks ordinary feature testing, use a separate disposable simulator
+  instead of erasing the existing device or resetting the account. Lock/privacy
+  regression tests must retain their actual reproduction state; report a concrete
+  blocker if that state cannot be recovered and do not claim verification passed.
+  This simulator rule does not authorize unlocking the Mac host itself.
 - After the code shape settles, format and run the relevant repository CI checks.
   Save command evidence outside the checkout with `checks.py run`; verify it again
   before relying on it. Focused red tests are the exception to delaying broad runs.
