@@ -65,7 +65,7 @@ class SharedQueueTests(unittest.TestCase):
         self.assertIn('MacBook Air',content)
         self.assertIn(f'codex://threads/{THREAD}',content)
         self.assertIn('tasks/B-auth-example/PRD.md',content)
-        self.assertIn('tasks/B-auth-example/reviews/claude-design.md',content)
+        self.assertNotIn('tasks/B-auth-example/reviews/claude-design.md',content)
         self.assertNotIn('SECRET_INTERNAL_CONTEXT',content)
         self.assertNotIn('| ID |',content)
         self.assertEqual(len(self.runq('list')),1)
@@ -140,8 +140,7 @@ class SharedQueueTests(unittest.TestCase):
         panel=self.runq('panel')
         card=panel['tasks'][0]
         expected=[{'label':'Chat','url':chat},
-                  {'label':'Plan','url':'tasks/B-auth-panel/PRD.md'},
-                  {'label':'Claude review','url':'tasks/B-auth-panel/reviews/claude-design.md'},
+                  {'label':'PRD','url':'tasks/B-auth-panel/PRD.md'},
                   {'label':'PR','url':pr}]
         self.assertEqual(card['links'],expected)
         self.assertEqual(card['codex_task'],chat)

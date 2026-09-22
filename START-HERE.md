@@ -4,8 +4,10 @@
 
 Give Codex a job in its chat. That same chat gives you the findings, any decision
 needed and the next step. Obsidian is your task list, with links back to the work.
-Plans, boards and review evidence are maintained by agents; you can open them
-when useful, but you do not need to read every file.
+Each task has one optional reading page, its PRD, with the current outcome,
+decisions and next step. Agents maintain the PRD and all supporting records.
+A one-line request in Codex chat is enough to start investigation; no template
+or separate task form is needed.
 
 [Workflow chat](codex://threads/01a0b92d-15fb-76a3-a3f1-194acf660e22) · [Task records](tasks/)
 

@@ -1,10 +1,21 @@
 # Task: <name>
 
-Codex chat: <verified task link; leave explicitly pending if no Codex chat exists yet>
+Status/outcome: <short current summary>
 
-<!-- Agent-maintained plan; explain the outcome/decision in chat as well.
-Keep routing, session settings and approval provenance in BOARD's internal
-section. Link useful supporting evidence instead of copying logs here. -->
+Intended behavior: <what should happen for the user>
+
+Decision needed: <the remaining choice, or none>
+
+Next step: <the concrete next action>
+
+Chat: <verified task link; explicitly pending if no chat exists yet>
+
+PR: <verified link when present; otherwise omit>
+
+<!-- This is the single optional task-reading page. The agent fills it from a
+one-line chat request, code investigation and answers to real gaps; Aman does
+not fill this template. Keep routing, sessions, approval provenance and detailed
+logs in supporting records. Explain the outcome/decision in chat as well. -->
 
 ## Outcome and scope
 What should the user be able to do? What is explicitly outside this task?
@@ -26,6 +37,10 @@ tests cover and what still needs visual verification.
 ## Executable slices
 For each slice: outcome, affected paths, test/check, dependency, estimated changed
 lines and planned PR base. Estimates are not guarantees; measure the actual diff.
+
+## Testing and review conclusions
+Brief verified results, actionable review conclusions and material gaps. Keep
+commands, transcripts and full reviewer findings in agent-maintained records.
 
 ## Follow-ups
 Related old implementations that merit later work; remaining verification gaps.

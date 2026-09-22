@@ -7,22 +7,25 @@ matters, the recommendation or decision needed, and the next step there. A
 finding left only in a file has not been communicated to him. Obsidian's daily
 list needs only task name, status, machine tag and useful links.
 
-PRD and BOARD are agent-maintained support, not mandatory reading. Keep the PRD
-focused on the intended behavior, decisions and tests. BOARD starts with a short
-current summary (about 60 words) and links, for example:
+PRD.md is the single optional reading page for each task. Begin with a short
+current status/outcome, intended behavior, any decision needed, the next step,
+and verified Chat/PR links. Include brief testing and review conclusions with
+material gaps; Aman should not need BOARD, review or evidence folders to learn
+what happened. Keep the PRD concise, usually far below the existing maximum of
+50,000 UTF-8 bytes. Update its summary instead of appending status dumps.
 
-> **Waiting for your decision.** The dependency upgrade changes toast placement
-> on older Android versions. The task chat explains the recommendation and choice.
-> Next: resolve that choice before changing the dependency.
->
-> Chat · PR (when present) · Plan · Claude review
+A one-line request in Codex chat is sufficient intake. The agent investigates
+code and existing records to develop behavior, scope and acceptance examples,
+then asks only about real remaining gaps or decisions. Templates guide the agent;
+never ask Aman to fill one or maintain these records himself.
 
-Use real links, omit unavailable ones, and never invent a Claude session URL.
-A saved Claude report is a useful link labeled **Claude review**; it is not a
-link to the interactive CLI session. Keep the real session ID and resume context
-in internal details. Use an actual session link only when verified.
+BOARD and detailed review/evidence files remain agent-maintained support. Keep
+routing, approval provenance, reviewed revisions and session resume information
+there. Preserve existing files and approval evidence. Use real links, omit
+unavailable ones, and never invent a Claude session URL. Summarize review
+conclusions in PRD and chat; retain original reports in the supporting records.
 
-After that summary, use Obsidian's native folded callout for agent metadata:
+In BOARD, use Obsidian's native folded callout for agent metadata:
 `> [!info]- Agent details`, with every content line (including blanks) quoted
 with `>`. Raw HTML details around Markdown did not hide the body in Obsidian;
 verify the actual reader, not just the file syntax.
@@ -59,8 +62,8 @@ level deeper than the shared records folder. Verify the resolved target exactly.
 The records are outside both the repository and its worktree container.
 
 Put the verified Codex chat link near the top of PRD.md and BOARD.md, and retain
-the same link in TODO.md. Link each completed Claude report there when useful;
-keep long findings in the report and summarize actionable conclusions in chat.
+the same link in TODO.md. Keep completed Claude report links in BOARD;
+keep long findings in the report and summarize actionable conclusions in PRD and chat.
 For queued work, read it from that item's linked row;
 for an existing app task, verify the task ID through the app. If work has no Codex
 chat yet, say so instead of fabricating a link.
@@ -73,9 +76,9 @@ Keep these files only when they carry useful information:
 
 | File in the lasting folder | Contents |
 | --- | --- |
-| `PRD.md` | Current plan, accepted behavior and tests; at most 50,000 UTF-8 bytes |
+| `PRD.md` | Single optional reading page: current outcome, intended behavior, decisions, next step, Chat/PR links and testing/review conclusions; at most 50,000 UTF-8 bytes |
 | `design.md` | Optional supporting diagrams, Figma links, alternatives and baseline screenshots; required decisions remain in the PRD |
-| `BOARD.md` | Short current outcome and next step with chat/PR/review links; agent routing and approval references under collapsed details |
+| `BOARD.md` | Agent continuity, routing, approval references and detailed report links under collapsed details |
 | `approvals/<revision>/` | Real PRD/design copies and their digests at approval/review boundaries; never overwrite older approvals |
 | `evidence/<run>/` | Before/after screenshots, numbered actions, device/build details, test commands and logs |
 | `reviews/` | Original reviewer findings, dispositions, reviewed commits and bot comment links/revisions |

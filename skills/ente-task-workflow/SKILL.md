@@ -7,10 +7,13 @@ description: Take an Ente bug, feature, migration, or improvement from code expl
 
 The working chat is Aman's primary reading surface. Lead with the outcome or
 problem and its user impact, then the recommendation/decision needed and next
-step. Add short links to the PR, plan or Claude review when useful. Do not require
-him to open BOARD, evidence folders or raw reviews to discover the conclusion.
-Obsidian is primarily the compact task list; maintain PRD/BOARD for agent
-continuity and optional inspection. Use the reading order in
+step. Link the PR and PRD when useful. Obsidian exposes the compact TODO and
+one optional reading page per task: PRD.md. Put the current outcome, decisions,
+next step and brief testing/review conclusions there. BOARD, evidence and raw
+reviews remain agent-maintained support, not another reading path.
+A one-line request in Codex chat is enough to begin: expand it through code
+investigation and ask only about real gaps that sources cannot resolve. Never
+require Aman to fill a template or use a separate intake form. Use the reading order in
 [task-records.md](references/task-records.md); keep paths, hashes, IDs, approval
 provenance and command logs out of routine user-facing summaries.
 Read the current task and personal `~/.codex/AGENTS.md` first. Do not create or

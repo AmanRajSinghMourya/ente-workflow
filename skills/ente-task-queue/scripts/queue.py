@@ -147,12 +147,7 @@ def task_cards(root):
             folder, note = notes[row["codex_task"]]
             relative = folder.relative_to(root).as_posix()
             if (folder / "PRD.md").exists():
-                links.append({"label": "Plan", "url": f"{relative}/PRD.md"})
-            review = next((folder / "reviews" / name for name in
-                ("claude-code.md", "claude-review.md", "claude-design.md")
-                if (folder / "reviews" / name).is_file()), None)
-            if review:
-                links.append({"label": "Claude review", "url": review.relative_to(root).as_posix()})
+                links.append({"label": "PRD", "url": f"{relative}/PRD.md"})
             pr = re.search(r"\[(?:PR|Pull request)\]\((https://github\.com/[^)]+/pull/[0-9]+)\)", note, re.I)
             if pr:
                 links.append({"label": "PR", "url": pr[1]})

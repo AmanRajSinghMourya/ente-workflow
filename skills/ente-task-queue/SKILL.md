@@ -123,7 +123,11 @@ Install and enable once per host; sync shares the source, not Obsidian settings.
 
 The working chat carries the findings, recommendation/decision and next step.
 Obsidian is Aman's task index, not an execution transcript. In the daily view use
-a short title, status, MacBook Air/Mac mini tag and verified chat/PR/review links.
+a short title, status, MacBook Air/Mac mini tag and verified Chat/PRD/PR links.
+PRD is the single optional reading page; summarize testing and review conclusions
+there instead of sending Aman through supporting folders. A one-line request in
+Codex chat is sufficient intake: investigate code, maintain the records, and ask
+only about gaps that remain after investigation. Never ask Aman to fill a template.
 Keep exact routing, authorization provenance and hashes in the task's internal
 records; do not paste them into the readable task title or status. The daily list is generated from the internal queues; never hand-edit either.
 After updates, run the sync helper at handoff to share the new view promptly.

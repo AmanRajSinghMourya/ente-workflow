@@ -2,7 +2,9 @@
 
 Checkboxes mark tasks done; unchecking returns them to Review. Click the status
 chip for Needs you, Review, Later or Blocked. Filters narrow the list. Chat holds
-the findings and next step; Plan and PR links appear when those records exist.
+the findings and next step; PRD is the single optional task-reading page. PRD
+and PR links appear when those records exist. Detailed agent records stay out
+of this list.
 
 Status changes save through `queue.py`. They do not approve code, open PRs or
 dispatch work. The other Mac's tasks are readable here; update them in their chat.
