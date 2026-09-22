@@ -17,6 +17,7 @@ Task plans, screenshots and reviews stay in `tasks/` after a worktree is removed
 | ID | Task | Status | Codex task | Context |
 | --- | --- | --- | --- | --- |
 | Q001 | Investigate Auth macOS PIN keyboard input | done | [Open](codex://threads/01a0c780-9d6a-7a82-9dab-d92990604dc2) | Read-only investigation of macOS Auth 4.4.25 build 1072 PIN lock keyboard input report; user reports Windows keyboard input works. Determine expected behavior and source/history evidence without product or Git changes. |
+| Q002 | ticket optimization | needs decision | [Open](codex://threads/01a0c8ab-af62-7271-8947-165e47061813) | Set up and verify Zoho Desk MCP on MacBook Air. Verify three supplied tickets, conversations and attachments before developing a minimal T- ticket investigation workflow. Read-only customer access; no replies, status or assignment changes. No Ente product edits before plan approval. |
 <!-- queue:end -->
 
 | Status | What it means |
