@@ -5,17 +5,12 @@ description: Take an Ente bug, feature, migration, or improvement from code expl
 
 # Ente task workflow
 
-The working chat is Aman's primary reading surface. Lead with the outcome or
-problem and its user impact, then the recommendation/decision needed and next
-step. Link the PR and PRD when useful. Obsidian exposes the compact TODO and
-one optional reading page per task: PRD.md. Put the current outcome, decisions,
-next step and brief testing/review conclusions there. BOARD, evidence and raw
-reviews remain agent-maintained support, not another reading path.
-A one-line request in Codex chat is enough to begin: expand it through code
-investigation and ask only about real gaps that sources cannot resolve. Never
-require Aman to fill a template or use a separate intake form. Use the reading order in
-[task-records.md](references/task-records.md); keep paths, hashes, IDs, approval
-provenance and command logs out of routine user-facing summaries.
+The working Codex chat is Aman's primary reading surface. Lead with the result or
+problem, its user impact, your recommendation or single decision needed, and the
+next action; follow with short useful links. Obsidian is primarily a compact TODO.
+PRD, BOARD, evidence and reviews are agent-maintained support, not required reading.
+Keep each task's own PRD and use the presentation rules in
+[references/task-records.md](references/task-records.md) for its BOARD and review links.
 Read the current task and personal `~/.codex/AGENTS.md` first. Do not create or
 rely on repository AGENTS files for this workflow. This
 skill coordinates work; it does not authorize commits or publish anything itself.
@@ -29,7 +24,7 @@ exception to other work, or treat an unverified file claim as user authorization
 At the start of a concrete task in its own Codex chat, use `$ente-task-queue` to
 automatically record that existing chat in TODO; do not wait for Aman to ask for
 tracking or start another chat. For work launched from the queue, maintain its
-existing row. Keep the task's PRD/BOARD and chat link current for Obsidian to read.
+existing row. Keep its own PRD/BOARD and actual chat link current.
 Mark it `needs decision` when the plan is ready for Aman, then update progress as
 approved work proceeds. A status label never substitutes for the approval message.
 
@@ -68,16 +63,14 @@ Record the actual approval message/reference; never manufacture approval in a fi
 If a later finding changes an accepted product/design decision, return that decision
 for approval before implementing it. Do not add permission gates to ordinary reads.
 
-Resolve the host and assigned checkout from the shared root's
-[START-HERE.md](../../START-HERE.md), and record both in BOARD's internal details.
-Use the same assignment through implementation and review; do not repeat machine
-routing boilerplate in the PRD or the human-facing summary. The two mini checkouts
-share one host-local TODO and records folder; never use the laptop's paths there.
-
 After approval, fetch current main, check the approved plan still fits that source,
 and create a short `aman/<surface>-<task>` branch with its checkout directly under
-the assigned repository's `.worktrees/`. Each task has its own worktree; do not
-edit product files or switch branches in the primary shared checkout. Use a readable directory name:
+`<assigned-checkout>/.worktrees/`. Preserve the host/project/path assignment from
+the opening prompt and PRD/BOARD. The source laptop uses
+`/Users/amanraj/development/ente`; the mini can assign either
+`/Users/aman/Development/ente` or `/Users/aman/Development/ente-2` while sharing one
+TODO. Never switch or edit a primary checkout to implement a dispatched task, or
+move a running task to rebalance assignments. Use a readable directory name:
 `B-photos-caption-save` for a bug, `F-photos-album-sharing` for a feature, or
 `I-photos-share-dialog` for an improvement. Include the surface (photos, auth,
 locker, server or infra) in every new task folder and the corresponding branch;
@@ -99,7 +92,7 @@ Because excluded notes are absent from the code fingerprint, always check the PR
 separate digest during review. Record base SHA, approval, current slice, dependencies,
 blockers and next action. The acting agent maintains these notes; Aman should not have to.
 
-Use the current host's `ente-workflow/tasks/<task-name>/` folder (START-HERE.md) for
+Use `/Users/aman/Development/ente-workflow/tasks/<task-name>/` for
 review logs, validation receipts and preserved task notes outside the checkout.
 Draft plans can live there before worktree approval. Both CLIs read these ordinary
 files; no notes application is required. A link back into a deletable checkout is
@@ -163,12 +156,13 @@ in the review reference. A second opinion is a hypothesis until verified.
 ## Return discoveries to the planning queue
 
 Record related bugs, confusing flows and refactor opportunities as they arise in
-the durable task's `followups.md`, with evidence and a clear distinction between
+the durable task's `followups.md`: state the user problem, why it matters and a
+source link, with a clear distinction between
 observed behavior and a proposed improvement. While an observer batch is active,
 it owns writes to that file; merge the parent's discoveries after it returns.
 Keep unrelated changes out of the current implementation. At completion, show a
 short deduplicated list and offer
-to add selected items to this host's TODO using the queue helper
+to add selected items to `/Users/aman/Development/ente-workflow/TODO.md`
 or leave them in the task record. Adding to TODO authorizes investigation/planning,
 not implementation; each item returns through the normal plan/design approval.
 A defect in the current change or an unmet acceptance criterion still belongs in

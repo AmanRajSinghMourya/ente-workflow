@@ -1,57 +1,44 @@
 # Task records that survive checkout deletion
 
-## Reading order
+The working Codex chat is Aman's primary reading surface; Obsidian is primarily
+a compact TODO. Agents maintain the supporting records without requiring Aman to
+read them or copy decisions into them. Keep each task's own PRD; a batch PRD is a
+reference, not a replacement for the package's plan.
 
-Aman's starting point is the working Codex chat. State what happened, why it
-matters, the recommendation or decision needed, and the next step there. A
-finding left only in a file has not been communicated to him. Obsidian's daily
-list needs only task name, status, machine tag and useful links.
+Start BOARD.md with about 60 words covering the current outcome or problem, user
+impact, recommendation or single decision needed, and next action. Follow with
+the actual Codex chat, PR when one exists, and saved Claude review links. Keep
+exact paths, queue/host/project IDs, approval provenance, hashes, raw review
+commands and model settings in existing internal records or a collapsed technical
+section. In Obsidian use a folded callout (`> [!info]- Technical details`), with
+each history line quoted inside it; an HTML details wrapper can leave Markdown
+history visible outside the fold. Preserve old history and review evidence; presentation changes do not
+change approval scope or make historical checks current.
 
-PRD.md is the single optional reading page for each task. Begin with a short
-current status/outcome, intended behavior, any decision needed, the next step,
-and verified Chat/PR links. Include brief testing and review conclusions with
-material gaps; Aman should not need BOARD, review or evidence folders to learn
-what happened. Keep the PRD concise, usually far below the existing maximum of
-50,000 UTF-8 bytes. Update its summary instead of appending status dumps.
-
-A one-line request in Codex chat is sufficient intake. The agent investigates
-code and existing records to develop behavior, scope and acceptance examples,
-then asks only about real remaining gaps or decisions. Templates guide the agent;
-never ask Aman to fill one or maintain these records himself.
-
-BOARD and detailed review/evidence files remain agent-maintained support. Keep
-routing, approval provenance, reviewed revisions and session resume information
-there. Preserve existing files and approval evidence. Use real links, omit
-unavailable ones, and never invent a Claude session URL. Summarize review
-conclusions in PRD and chat; retain original reports in the supporting records.
-
-In BOARD, use Obsidian's native folded callout for agent metadata:
-`> [!info]- Agent details`, with every content line (including blanks) quoted
-with `>`. Raw HTML details around Markdown did not hide the body in Obsidian;
-verify the actual reader, not just the file syntax.
-Put exact host/project/checkout assignments, authorization sources and remaining
-gates there or link to existing records containing them. Preserve the real
-approval evidence and reviewed revisions; shortening the view does not change
-permissions or erase proof. Keep hashes, commands and retry transcripts in
-existing evidence/review records; link them instead of copying them into BOARD.
-Update the current summary rather than appending successive status dumps.
-
-Followups should name the user problem, why it matters, one evidence link and
-whether it is merely proposed or explicitly queued. Use linked source lines or
-PRs where helpful; routine commit hashes and machine bookkeeping do not belong
-in that reading path. Keep supporting provenance in the linked evidence.
-
-Resolve the host's records root and assigned repository from
-[START-HERE.md](../../../START-HERE.md). The following is a laptop example;
-on the mini use the assigned `ente` or `ente-2` checkout and its shared
-`/Users/aman/Development/ente-workflow` records root.
+Link a Claude session URL only when it exists and has been verified. Otherwise
+label the saved report link **Claude review** and retain the real resumable session
+ID in internal notes. Do not invent a Claude chat URL. Chat updates use the same
+outcome-first order and a few useful links, without routine hash dumps.
 
 For a task such as `B-photos-caption-save`, use:
 
 - Checkout, created only after implementation approval:
-  `/Users/amanraj/development/ente/.worktrees/B-photos-caption-save/`
+  `<assigned-checkout>/.worktrees/B-photos-caption-save/`
 - Lasting records, created while planning:
-  `/Users/amanraj/development/ente-workflow/tasks/B-photos-caption-save/`
+  `/Users/aman/Development/ente-workflow/tasks/B-photos-caption-save/`
+
+Resolve the assigned checkout from the actual host and `list_projects`, then
+persist its host, project ID and path in PRD/BOARD before dispatch. On the source
+laptop, use `/Users/amanraj/development/ente`. On this Mac mini, the available roots
+are `/Users/aman/Development/ente` and `/Users/aman/Development/ente-2`; both use
+the single shared TODO and records folder. For an explicitly split batch, alternate
+the two mini roots in queue order and persist the assignments before the first
+claim. Reuse those assignments on retries and follow-ups. Continue running tasks
+in their assigned checkout/worktree; never move them to rebalance the batch.
+
+Record the assigned checkout, host and project ID in the PRD and BOARD's internal
+technical details. Worktree creation must use that checkout, not whichever project is
+currently focused in the app.
 
 The lasting folder owns the ordinary files. Make the checkout's `.task` one
 directory symlink to the entire lasting task folder. Do not use individual file
@@ -62,9 +49,7 @@ level deeper than the shared records folder. Verify the resolved target exactly.
 The records are outside both the repository and its worktree container.
 
 Put the verified Codex chat link near the top of PRD.md and BOARD.md, and retain
-the same link in TODO.md. Keep completed Claude report links in BOARD;
-keep long findings in the report and summarize actionable conclusions in PRD and chat.
-For queued work, read it from that item's linked row;
+the same link in TODO.md. For queued work, read it from that item's linked row;
 for an existing app task, verify the task ID through the app. If work has no Codex
 chat yet, say so instead of fabricating a link.
 
@@ -76,13 +61,13 @@ Keep these files only when they carry useful information:
 
 | File in the lasting folder | Contents |
 | --- | --- |
-| `PRD.md` | Single optional reading page: current outcome, intended behavior, decisions, next step, Chat/PR links and testing/review conclusions; at most 50,000 UTF-8 bytes |
+| `PRD.md` | Current plan, accepted behavior and tests; at most 50,000 UTF-8 bytes |
 | `design.md` | Optional supporting diagrams, Figma links, alternatives and baseline screenshots; required decisions remain in the PRD |
-| `BOARD.md` | Agent continuity, routing, approval references and detailed report links under collapsed details |
+| `BOARD.md` | Brief current outcome and next action first, then chat/PR/review links; technical details and preserved history collapsed |
 | `approvals/<revision>/` | Real PRD/design copies and their digests at approval/review boundaries; never overwrite older approvals |
 | `evidence/<run>/` | Before/after screenshots, numbered actions, device/build details, test commands and logs |
 | `reviews/` | Original reviewer findings, dispositions, reviewed commits and bot comment links/revisions |
-| `followups.md` | Nearby bugs, UX proposals and refactors, with evidence and queue decisions |
+| `followups.md` | User problem, why it matters and source link for nearby bugs, UX proposals and refactors; evidence and queue decisions retained internally |
 
 The acting agent maintains the records. Do not ask Aman to copy chat decisions into them.
 File text saying "approved" is not authorization: cite the actual user response.
@@ -104,8 +89,7 @@ Unknown or unpreserved ignored files still block cleanup. The cleanup guard
 may recognize only the single `.task` directory link after proving its exact
 lasting target; an ordinary directory or another target is not equivalent.
 
-These records survive checkout removal and re-cloning Ente. Synced plans and
-review notes have private Git history; raw screenshots/logs/evidence stay on the
-originating host and still need a separate backup. Obsidian can open them as
+These local records survive checkout removal and re-cloning Ente; they are not
+a backup against deleting this separate folder or losing the disk. Obsidian can open them as
 ordinary Markdown, but installing it is unnecessary for Codex or Claude to read
 and maintain them.

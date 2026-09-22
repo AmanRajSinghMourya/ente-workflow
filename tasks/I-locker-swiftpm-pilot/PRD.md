@@ -1,10 +1,6 @@
 # Locker Swift Package Manager pilot
 
-Status: on 22 September Aman authorized starting the five easiest migrations
-now on the Mac mini, split across `/Users/aman/Development/ente` and
-`/Users/aman/Development/ente-2`. Its setup task below owns live selection,
-queue assignments and execution evidence. This laptop copy is the planning
-reference. Review-learning and cleanup schedules remain on their existing hold.
+Status: five-package pilot authorized to start immediately on 22 September 2026. The remaining six rows stay deferred.
 Source discussion: [Build Codex productivity workflow](codex://threads/01a0b92d-15fb-76a3-a3f1-194acf660e22).
 Mac mini setup: [Set up Mac mini Ente workflow](codex://threads/01a0c6ea-8e55-7c00-8798-52d124669141).
 Reference: [Flutter 3.47.2 upgrade, PR #12592](https://github.com/ente/ente/pull/12592).
@@ -174,18 +170,45 @@ do not let multiple agents edit a shared checkout. Rebase/merge work only in a w
 consistent with existing PR history and Aman's no-force-push rule. Record dependent
 PRs and don't claim an isolated PR is independent when it needs another's changes.
 
-The initial one-task-first hold is superseded by Aman's 22 September request:
-select the five easiest migrations, use GPT-6 Astra with extra-high reasoning and
-Fast mode off, and start the mini TODO pickup now. Reuse the eleven existing rows
-through queue.py; release only the selected five and leave six deferred. Alternate
-their assignments between the mini's two repositories, preserving any already
-running assignment. Record the actual host/path in each PRD, BOARD and opening
-prompt. Routine plan/code/commit/PR-title/publication approvals are supplied for
-solid technical fixes; genuine product/design/security decisions remain blocked
-on Aman. Keep the Claude design review, same-session post-PR review, actual Codex
-bot feedback and native validation requirements. Do not start cleanup or the
-separate review-collection job early.
-Use the shared task records and single .task directory symlink for each real task.
+## Immediate five-package pilot: 22 September update
+
+Aman's updated instruction, relayed by the source workflow task, supersedes the
+Wednesday pickup hold and ente_mail-only calibration gate for these five rows.
+Start now, favor the custom Ente packages, and split the batch 3/2 across the mini's
+two checkouts. Do not require five publishable PRs if validation or upstream blocks
+one. The routine batch implementation/publication authorization and review order
+above remain in force; genuine product/security/data/OS/maintenance decisions stop.
+
+| Row | Package | Assigned checkout | Initial route |
+| --- | --- | --- | --- |
+| Q001 | ente_mail | /Users/aman/Development/ente | Small custom Swift plugin; retain MailCore test package |
+| Q002 | ente_screen_cover | /Users/aman/Development/ente-2 | Single custom Swift source; prove privacy lifecycle |
+| Q003 | open_file_ios | /Users/aman/Development/ente | Candidate 1.1.0; existing open_file 3.5.11 accepts it |
+| Q005 | fluttertoast | /Users/aman/Development/ente-2 | Candidate 9.1.0; inspect Android/FToast behavior deltas |
+| Q006 | ua_client_hints | /Users/aman/Development/ente | Candidate 1.5.0; source/privacy unchanged except moves |
+
+Q004, Q007, Q008, Q009, Q010 and Q011 remain deferred. See
+`evidence/released-packages/REPORT.md` for hash-verified published sources and
+advisory evidence. This is source evidence, not native or runtime validation.
+All three app iOS floors (Photos/Locker15.1, Auth15.0) exceed the candidates' floors;
+recheck fresh main in each task. fluttertoast has actual Android gravity and FToast
+overlay changes; establish Ente's affected call sites and use Claude's design review
+before deciding whether a behavior-preserving upgrade is possible.
+
+Persist host/project/path assignments in `dispatch.json` and each task's PRD/BOARD
+before dispatch; continue each task in its assigned root on retries. Initial app
+environment is local; create its own named worktree only after technical planning
+and Claude design review. Shared primary checkouts must stay unchanged.
+
+Use gpt-6-astra, xhigh, Fast off (standard service tier `default`). Verify the actual
+first child's turn settings before dispatching the rest. Source task confirms its
+`pick-up-shared-ente-tasks` schedule is PAUSED (updated_at1790046590080). Activate
+only existing mini `ente-task-pickup-on-mac-mini`, every15minutes, for these five.
+PR-learning and cleanup remain PAUSED; control.json's2026-09-23T12:30:00Z hold and
+audit cleanup remain unchanged. Do not implement source-chat intake/sync.
+
+Use one shared queue and one lasting records folder; each worktree gets its single
+`.task` directory symlink. Each plugin must have its own persistent Claude session.
 
 ## Final Locker integration checkpoint
 

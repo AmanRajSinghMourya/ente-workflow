@@ -1,0 +1,17 @@
+{
+  "target_repo": "AmanRajSinghMourya/ente",
+  "head_repo": "AmanRajSinghMourya/ente",
+  "head_branch": "aman/mobile-ua-client-hints-swiftpm",
+  "base_branch": "main",
+  "remote": "aman-review",
+  "push_url": "git@github-aman-pilot:AmanRajSinghMourya/ente.git",
+  "api_login": "aman-pilot",
+  "commit_author": "AmanRajSinghMourya <amanrajmourya7@gmail.com>",
+  "commit_message": "Update ua_client_hints for SwiftPM support",
+  "pr_title": "[mobile] Update ua_client_hints for SwiftPM support",
+  "pr_body": "",
+  "draft": false,
+  "authorization": "Opening task relays22September batch authorization; routine behavior-preserving commit and ready fork PR preauthorized. Shared fork-main fast-forward is separately owned by coordinator and must be confirmed before publishing.",
+  "status": "committed locally; coordinator-owned fork-main approval pending",
+  "head_sha": "0c9434b707e703b46640c7979f070411049390f1"
+}

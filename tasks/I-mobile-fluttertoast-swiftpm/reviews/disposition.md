@@ -1,0 +1,27 @@
+# Claude design review disposition
+
+Session: `bef89a55-c360-42eb-aff9-24f92fc23c57`. Completed22September2026 04:05:59UTC. Output: [claude-design.md](claude-design.md); raw JSON log and successful receipt: `../evidence/claude-design-v2.json{,.log}`. No permission denials. Only Read/Glob/Grep available; source fingerprint unchanged; receipt verified after review. Initial launch with unsupported --permission-prompts failed before review; retained separately.
+
+Reviewed PRD SHA256:1afe95c95088ff0cf8a683bd37f80f67d58e6dd1692ff2800f9a5cef65c3c2e6. Exact reviewed document retained as prd-design-reviewed.md. Later PRD now incorporates findings; this is a design consultation, not code/native validation. Resume this session ID explicitly for eventual post-PR code review.
+
+## Findings and primary assessment
+
+1. **Confirmed; needs Aman:** native unstyled Photos preview-failure toast changes from bottom/yOffset100px to system default on API26–29 (Android8.0–10). Integration video-editor TOP annotation also loses TOP there. Candidate setGravity guard and exact Ente callers verified; AOSP Android10 source confirms default24dp, e.g.72px at3x density. Source proof only; no emulator comparison.
+2. **Accepted source fact; narrower claim than review:** iOS .m/.h/privacy byte identity is independently hash/content verified. Manifest location and FlutterFramework dependencies match installed toolchain; OS floor13 is below apps15/15.1. Reviewer phrasing iOS "provably unchanged" does not establish SwiftPM/CocoaPods build or runtime success. All native linking/resource/render/cancel evidence remains pending.
+3. **Confirmed routine implementation correction:** fourth consuming Podfile.lock is mobile/packages/ente_components/example/ios/Podfile.lock. All four use CocoaPods1.17.0 and the same old fluttertoast checksum. Include the example lock/deployment check after approval; this is part of preserving all consumers, not a new product choice.
+4. **Rejected as a new support decision:** broad suggestion that this newly raises usable Dart support from3.10 overlooks current mobile/pubspec.lock requiring Dart>=3.11.0-0 and Flutter>=3.44.0 plus ente_components explicit Flutter>=3.44.0. Installed/CI Flutter3.47.2 includes Dart3.13.2. Do not churn workspace SDK declarations; candidate constraints must resolve on the supported pinned toolchain.
+5. **Confirmed, focused tests pending:** FToast mounted queue/dismiss/position implementation unchanged; unmounted queue guard clears instead of attempting unsafe lookup. New status flag unused by Ente, and native success adds a1-second timer. Drain timers in mocked-success widget tests. Do not adopt or patch the flag. Reviewer's possible release-only stale overlay survival is unverified, not a confirmed regression. Cover route disposal explicitly.
+6. **Compatibility remains a build gate:** matching manifest package/namespace gives an AGP8.12.1 warning, not fatal failure; independently verified official Google manifest-merger31.12.1 source, stronger than reviewer's cached-package precedent. Do not treat presumed parent AGP/Kotlin selection or historical builds as proof of candidate build compatibility. Actual builds pending.
+7. **Corrected proposed test:** debugDefaultTargetPlatformOverride does not change dart:io Platform.isAndroid used in Photos wrapper. Use actual platform harness for that branch; do not add a broad testability refactor.
+8. **Accepted evidence scope clarification:** candidate.diff intentionally covers Dart/Android/package metadata rather than all example/IDE file changes. Extracted archives are complete; retain full file-delta inventory. Root ErrorSolvedTesting.dart and example/IDE changes are not Ente runtime imports.
+9. **Rejected overly broad FToast wording:** shared UI fallback can also queue; Auth is not the only queue-capable caller. Exact callback/entry-clear ordering at candidate lines221–228 clears entry before re-entering _showOverlay. Keep tests meaningful rather than treating speculative double-remove as a finding.
+
+## Recommendation and alternatives
+
+Primary and Claude recommend asking Aman to accept the narrow system-default placement change, leave Ente toast call sites unchanged, then continue9.1.0 validation. This is a recommendation only; no approval inferred. Native iOS/Android proof and affected CI remain mandatory before any PR.
+
+- **Accept and continue (recommended):** Photos preview-error toast uses OS default bottom offset on Android8–10; styled production toasts retain placement. Integration diagnostic TOP annotation also follows system default on those APIs. Includes upstream stale-context queue clearing and unused status tracking. No maintained fork.
+- **Defer Q005 at8.2.14:** preserves exact existing runtime behavior and leaves fluttertoast SwiftPM support pending; other four pilot tasks continue.
+- **Preserve old offset through fork/backport:** can retain Android/Dart source by backporting only iOS packaging into a maintained dependency fork; introduces ownership/updates/CI and explicit maintenance approval. Not recommended for this isolated positioning difference. Setting a backgroundColor is not an equivalent fix: it changes system toast to custom toast on every Android version.
+
+The batch authorization explicitly reserves user-visible behavior decisions for Aman. Coordinator reinforced this gate in its task message. No product code, branch/worktree, dependency installation, native build, commit or PR has occurred.

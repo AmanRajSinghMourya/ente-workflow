@@ -7,7 +7,7 @@ They do not modify Git state or publish a PR. `run` executes the validation comm
 From any directory, test this one personal installation with:
 
 ```sh
-python3 -B -m unittest discover -s ~/.codex/skills/ente-workflow-checks/scripts -p 'replay_*.py'
+python3 -B -m unittest discover -s /Users/aman/.codex/skills/ente-workflow-checks/scripts -p 'replay_*.py'
 ```
 
 The tests use disposable repositories and simulated GitHub responses. They test
@@ -18,8 +18,8 @@ these tools, not Ente product behavior. CI does not currently invoke these scrip
 Save the starting state before investigating, then compare it afterward:
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/checks.py snapshot --repo /absolute/checkout --snapshot /tmp/task-before.json
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/checks.py unchanged --repo /absolute/checkout --snapshot /tmp/task-before.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/checks.py snapshot --repo /absolute/checkout --snapshot /tmp/task-before.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/checks.py unchanged --repo /absolute/checkout --snapshot /tmp/task-before.json
 ```
 
 Use a fresh path outside the checkout for each task. Existing dirty work is allowed;
@@ -31,7 +31,7 @@ another person or task in the same checkout, or prevent a write that is later un
 Write expectations from the agreed task before editing, then run:
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/check_file_contract.py --repo /absolute/checkout --contract /tmp/task-files.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/check_file_contract.py --repo /absolute/checkout --contract /tmp/task-files.json
 ```
 
 The JSON supports `repo` (exact resolved checkout path), `branch`, `head` (full SHA),
@@ -58,8 +58,8 @@ Run the relevant existing test/lint command through `run`, then use `verify`
 before relying on that result. Keep its JSON and adjacent log outside the checkout:
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/checks.py run --repo /absolute/checkout --cwd server --receipt /tmp/task-test.json -- ./scripts/test-with-postgres.sh host
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/checks.py verify --repo /absolute/checkout --receipt /tmp/task-test.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/checks.py run --repo /absolute/checkout --cwd server --receipt /tmp/task-test.json -- ./scripts/test-with-postgres.sh host
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/checks.py verify --repo /absolute/checkout --receipt /tmp/task-test.json
 ```
 
 A failed command, changed source/staging/HEAD, or altered log invalidates the result.
@@ -72,7 +72,7 @@ current task's authorized repository, account, branch, paths, and intended commi
 The example is a schema example, not a publishing policy.
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/checks.py pr --repo /absolute/checkout --contract /tmp/task-pr.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/checks.py pr --repo /absolute/checkout --contract /tmp/task-pr.json
 ```
 
 This reads live GitHub state through `gh`. `--offline` is diagnostic and cannot
@@ -84,7 +84,7 @@ For a fork whose base must equal upstream, set `match_upstream: true` and
 ## Check which API a test contacted
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/check_api_origin.py --har /tmp/task-network.har --expected-origin http://localhost:8080 --api-path-prefix /public-collection/
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/check_api_origin.py --har /tmp/task-network.har --expected-origin http://localhost:8080 --api-path-prefix /public-collection/
 ```
 
 This checks matching requests in the supplied capture; it does not capture traffic
@@ -97,12 +97,12 @@ expectations merely to make a check pass.
 ## Check the PRD and actual change size
 
 Make `<worktree>/.task` a directory symlink to its durable task folder in
-`/Users/amanraj/development/ente-workflow/tasks/`. PRD, board, reviews and evidence
+`/Users/aman/Development/ente-workflow/tasks/`. PRD, board, reviews and evidence
 then remain outside the checkout while visible beside the diff. Before
 implementation and again before review, check the PRD's UTF-8 byte count (maximum 50,000):
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/check_task.py prd --prd /absolute/checkout/.task/PRD.md
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/check_task.py prd --prd /absolute/checkout/.task/PRD.md
 ```
 
 Save the reported SHA-256 with the review inputs. To check that reviewers and the
@@ -114,7 +114,7 @@ Record the full base commit SHA for each planned PR, then measure its final
 working-tree changes, including nonignored untracked files:
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/check_task.py diff --repo /absolute/checkout --base <full-base-commit-sha>
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/check_task.py diff --repo /absolute/checkout --base <full-base-commit-sha>
 ```
 
 The count is additions plus deletions: at most 500 passes, 501–1,000 warns, and

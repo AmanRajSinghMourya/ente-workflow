@@ -5,7 +5,7 @@ description: Apply the Ente design team's current draft guidance to design, UI/U
 
 # Ente design decisions
 
-This adapts Aman's supplied `/Users/amanraj/Downloads/ente-design-kit/` for Codex.
+This adapts Aman's supplied Ente design kit; its imported guidance is bundled in this skill's `references/` folder.
 It is a **draft team policy**, not proof that a design is correct or current.
 Current user instructions and the approval gate in `ente-task-workflow` take
 precedence. Do not install the kit's CLAUDE.md or AGENTS files into the repository.
@@ -45,7 +45,7 @@ Show any conflict between the Figma design, current code and accepted requiremen
 to Aman before selecting a direction. Follow an explicit user decision.
 
 Record the agreed design and source precedent in the task PRD, then append a short
-entry to `/Users/amanraj/development/ente-workflow/design-log.md` with
+entry to `/Users/aman/Development/ente-workflow/design-log.md` with
 date, task, decision, source and actual approver. Mark unresolved choices as
 pending; don't make a log entry into fabricated approval. This shared log is local;
 it is not automatically visible to the design team.

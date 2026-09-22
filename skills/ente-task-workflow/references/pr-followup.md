@@ -1,8 +1,7 @@
 # PR feedback and completed-task cleanup
 
 Shared records live at
-the host's `ente-workflow/` folder. Task notes and skills sync privately; runtime
-review/cleanup state and raw evidence stay local. They are not Ente repository files.
+`/Users/aman/Development/ente-workflow/` and are local, not published.
 The six-hour follow-ups use this location; read STATUS.md before manual or
 scheduled follow-up work and honor any user-requested hold. Registering a PR does
 not override a hold. Do not assume scheduling a job proves it ran.
@@ -56,8 +55,8 @@ never “no findings.”
 ## Cleanup boundary
 
 Cleanup is currently **audit-only**. The executable guard is implemented and
-offline-tested; the first live audit and a deletion executor remain outstanding. The plan is at
-`/Users/amanraj/development/ente-workflow/archive/workflow-setup/automation-plan.md`.
+offline-tested; the first live audit and a deletion executor remain outstanding.
+The current commands and record schema are in the automation tools reference linked below.
 Do not enable deletion just because the scheduler ran successfully.
 
 For automatic cleanup, require exact recorded pairing, refreshed upstream/fork

@@ -1,6 +1,6 @@
 ---
 name: recent-code-bugfix
-description: Find and fix a bug introduced by the current author within the last week in the Ente monorepo (`/Users/amanraj/development/ente`). Use when a user asks for a proactive bugfix from their recent Ente changes, when the prompt is empty, or when asked to triage/fix regressions caused by their recent commits. Ensure the root cause maps directly to the author's own edits and validate with the smallest targeted check for the touched area.
+description: Find and fix a bug introduced by the current author within the last week in the Ente monorepo (`/Users/aman/Development/ente`). Use when a user asks for a proactive bugfix from their recent Ente changes, when the prompt is empty, or when asked to triage/fix regressions caused by their recent commits. Ensure the root cause maps directly to the author's own edits and validate with the smallest targeted check for the touched area.
 ---
 
 # Recent Code Bugfix (Ente)

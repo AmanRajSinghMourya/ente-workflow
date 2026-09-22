@@ -12,6 +12,11 @@ reviewer cannot authenticate/run, report the missing review instead of inventing
 one. Do not forward private code to another destination beyond the user-authorized
 local Codex/Claude CLI services.
 
+In the task chat and BOARD summary, link the saved report as **Claude review**.
+Use a Claude session URL only if it exists and has been verified; never derive one
+from a CLI session ID. Preserve that resumable ID, commands, reviewed hashes and
+dispositions in internal records; the user-facing update leads with the outcome.
+
 ## Inputs and freshness
 
 Freeze edits while reviews run. Give both reviewers the same PRD, immutable base
@@ -67,12 +72,8 @@ Fill in exact absolute paths and base before running independently for each mode
 > could not verify, and whether the PRD leaves decisions unresolved. Do not pad the
 > review with style preferences. An empty findings list is valid.
 
-The primary agent checks each finding against source. In the working chat,
-summarize consequential findings, their user impact and disposition; link the
-full saved review instead of asking Aman to read logs. Link a completed Claude
-report from BOARD and retain its actual resumable session ID in internal notes.
-A local CLI session ID is not a verified browser/chat URL; do not fabricate one.
-Fixes stay within the existing task authorization; reviews do not expand
+The primary agent checks each finding against source and shows its disposition
+to Aman. Fixes stay within the existing task authorization; reviews do not expand
 scope or authorize publication. User-pasted Claude reviews are classification-only
 unless Aman asks for edits.
 

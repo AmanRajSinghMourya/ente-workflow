@@ -8,7 +8,7 @@ Do not move that date earlier to run a test; use the offline fixtures instead.
 ## Collect bot reviews
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py --records-root /Users/aman/Development/ente-workflow
 ```
 
 The collector discovers recently updated author PRs and revisits every tracked or
@@ -40,7 +40,7 @@ save this payload in a task evidence file. Copy the complete revision array from
 ```
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py --record-disposition /absolute/assessment.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py --records-root /Users/aman/Development/ente-workflow --record-disposition /absolute/assessment.json
 ```
 
 The same requested hold applies to classification: before `not_before`, the
@@ -56,7 +56,7 @@ rejected merely to empty the pending list.
 ## Audit cleanup eligibility
 
 ```sh
-python3 -B ~/.codex/skills/ente-workflow-checks/scripts/cleanup_guard.py --repo /absolute/assigned/ente --records-root /absolute/host/ente-workflow --activity-evidence /absolute/fresh-activity.json
+python3 -B /Users/aman/.codex/skills/ente-workflow-checks/scripts/cleanup_guard.py --repo /Users/aman/Development/ente --records-root /Users/aman/Development/ente-workflow --activity-evidence /absolute/fresh-activity.json
 ```
 
 Save stdout in the task's evidence folder. `control.json.cleanup_mode` must be
@@ -74,7 +74,7 @@ task/PR records; the examples do not authorize anything):
 ```json
 {
   "id": "B-photos-caption-save",
-  "worktree": "/Users/amanraj/development/ente/.worktrees/B-photos-caption-save",
+  "worktree": "/Users/aman/Development/ente/.worktrees/B-photos-caption-save",
   "branch": "aman/photos-caption-save",
   "head_sha": "FULL_VERIFIED_SHA",
   "status": "completed",
@@ -88,7 +88,7 @@ task/PR records; the examples do not authorize anything):
   "upstream": {"repo":"ente-io/ente","number":2,"head_repo":"AmanRajSinghMourya/ente","head_branch":"aman/photos-caption-save","head_sha":"FULL_VERIFIED_SHA","base":"main"},
   "mapping_evidence": "ACTUAL_PAIRING_SOURCE_REFERENCE",
   "archive": {
-    "path":"/Users/amanraj/development/ente-workflow/tasks/B-photos-caption-save",
+    "path":"/Users/aman/Development/ente-workflow/tasks/B-photos-caption-save",
     "files":[
       {"path":"PRD.md","sha256":"ACTUAL_DIGEST"},
       {"path":"BOARD.md","sha256":"ACTUAL_DIGEST"},

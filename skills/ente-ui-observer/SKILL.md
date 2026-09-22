@@ -62,7 +62,7 @@ current review, not a hidden backlog. The observer does not make final product,
 design or code-review decisions.
 
 At completion the parent shows a short list and offers to add selected findings
-to `/Users/amanraj/development/ente-workflow/TODO.md`. Retain evidence
+to `/Users/aman/Development/ente-workflow/TODO.md`. Retain evidence
 in `followups.md` even when Aman defers or declines the item. TODO means pending
 investigation/design; it never means permission to create a worktree or implement.
 No automatic issue filing, messages to designers or publication of screenshots.
