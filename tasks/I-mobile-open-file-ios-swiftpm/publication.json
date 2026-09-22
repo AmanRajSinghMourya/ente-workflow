@@ -1,0 +1,29 @@
+{
+  "captured_at": "2026-09-22T04:28:47.438642+00:00",
+  "head_repository": "AmanRajSinghMourya/ente",
+  "target_repository": "AmanRajSinghMourya/ente",
+  "api_account": "aman-pilot",
+  "base": "main",
+  "branch": "aman/mobile-open-file-ios-swiftpm",
+  "push_url": "git@github-aman-pilot:AmanRajSinghMourya/ente.git",
+  "commit_identity": {
+    "name": "AmanRajSinghMourya",
+    "email": "amanrajmourya7@gmail.com"
+  },
+  "commit_title": "Update Locker file opening plugin for SwiftPM readiness",
+  "pr_title": "[mob][locker] Update file opening plugin for SwiftPM",
+  "pr_body": "",
+  "draft": false,
+  "immutable_base": "719fbdd58d6e288ee6b52147898358eef10656d3",
+  "observed_target_main": "f888fe93775093eddc40ab909773f8c4f0c308c4",
+  "authorization": "Aman September22 batch opening authorization; coordinator owns pending shared-main sync approval",
+  "publication_blocked": true,
+  "block_reason": "Fork main202behind; await coordinator approved fast-forward. Do not independently update shared main or publish unrelated history.",
+  "head_sha": "02aab68dd894690ce934a206fffd456f5acba151",
+  "local_commit_complete": true,
+  "claude_session_id": "943f8f50-f1bc-4bea-86b8-9c634395dd71",
+  "post_pr_claude_review": "pending",
+  "github_codex_bot": "pending",
+  "independent_codex_cli_review": "no confirmed bug findings",
+  "ready_for_scoped_publication_after_shared_base_sync": true
+}

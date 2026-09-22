@@ -175,4 +175,58 @@ class SharedQueueTests(unittest.TestCase):
         self.assertNotIn('[!todo]',content)
         self.assertEqual(self.runq('panel')['tasks'][0]['task'],'Shown live')
 
+    def test_archived_row_disappears_from_daily_views_but_retains_history(self):
+        self.runq('add','--title','Retired task','--context','Keep original context','--thread',THREAD)
+        retired=self.runq('state','Q001','--from','planning','--to','archived')
+        self.assertEqual(retired['status'],'archived')
+        self.assertEqual(retired['context'],'Keep original context')
+        self.assertEqual(retired['codex_task'],f'codex://threads/{THREAD}')
+        self.assertEqual(self.runq('list'),[retired])
+        self.assertEqual(self.runq('list','--all')[0]['status'],'archived')
+        self.assertEqual(self.runq('panel')['tasks'],[])
+        self.assertEqual(self.runq('view')['tasks'],0)
+        self.assertIn('No tasks yet.',self.todo.read_text())
+        self.assertNotIn('Retired task',self.todo.read_text())
+        same=self.runq('add','--title','Changed title','--context','New context','--thread',THREAD)
+        self.assertEqual(same,retired)
+        self.assertEqual(self.runq('panel')['tasks'],[])
+
+    def test_archived_ids_are_not_reused_and_claim_skips_retired_work(self):
+        self.runq('add','--title','Retired queue item','--context','x')
+        self.runq('state','Q001','--from','queued','--to','archived')
+        self.assertIsNone(self.runq('claim'))
+        added=self.runq('add','--title','New task','--context','y')
+        self.assertEqual(added['id'],'Q002')
+        self.assertEqual(self.runq('claim')['id'],'Q002')
+        self.assertEqual(self.runq('list')[0]['status'],'archived')
+
+    def test_archived_state_cannot_be_reactivated(self):
+        self.runq('add','--title','Retired task','--context','x','--thread',THREAD)
+        self.runq('state','Q001','--from','planning','--to','archived')
+        owned=self.root/'.workflow/queues/macbook-air.md'
+        before=owned.read_bytes()
+        for target in QUEUE.STATES:
+            if target == 'archived':
+                continue
+            with self.subTest(target=target):
+                self.assertIn('archived',self.runq('state','Q001','--from','archived','--to',target,ok=False))
+                self.assertEqual(owned.read_bytes(),before)
+        self.assertEqual(self.runq('state','Q001','--from','archived','--to','archived')['status'],'archived')
+        self.assertEqual(owned.read_bytes(),before)
+
+    def test_archive_uses_observed_state_and_existing_host_and_sync_guards(self):
+        self.runq('add','--title','Current task','--context','x','--thread',THREAD)
+        owned=self.root/'.workflow/queues/macbook-air.md'
+        before=owned.read_bytes()
+        error=self.runq('state','Q001','--from','queued','--to','archived',ok=False)
+        self.assertIn("expected 'queued'",error)
+        self.assertEqual(owned.read_bytes(),before)
+        self.config.write_text(json.dumps({'machine':'mac-mini'}))
+        self.runq('state','Q001','--from','planning','--to','archived',file=owned,ok=False)
+        self.assertEqual(owned.read_bytes(),before)
+        self.config.write_text(json.dumps({'machine':'macbook-air'}))
+        (self.root/'.workflow/sync-status.json').write_text(json.dumps({'status':'conflict'}))
+        self.runq('state','Q001','--from','planning','--to','archived',ok=False)
+        self.assertEqual(owned.read_bytes(),before)
+
 if __name__=='__main__': unittest.main()

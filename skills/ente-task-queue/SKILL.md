@@ -149,3 +149,7 @@ ready, and `done` when the agreed task is complete. Keep the chat link and conte
 Read the new state after a conflict; do not overwrite another agent's update.
 The helper enforces file/state comparisons, not the truth of approval or whether
 the product works. Completed rows remain as history.
+
+For explicitly abandoned tasks, use `state <id> --from <current> --to archived`.
+Archived rows retain their IDs and history but leave the daily view and cannot be
+reactivated. A fresh task needs a new request; never restart an abandoned batch.

@@ -20,7 +20,7 @@ START, END = "<!-- queue:start -->", "<!-- queue:end -->"
 COLUMNS = ("ID", "Task", "Status", "Codex task", "Context")
 KEYS = ("id", "task", "status", "codex_task", "context")
 STATES = ("queued", "starting", "planning", "needs decision", "implementing",
-          "ready for review", "done", "deferred", "blocked")
+          "ready for review", "done", "deferred", "blocked", "archived")
 LINK_REQUIRED = {"planning", "needs decision", "implementing", "ready for review", "done"}
 
 
@@ -140,6 +140,8 @@ def task_cards(root):
             notes.setdefault("codex://threads/" + identifier, (folder, text))
     cards = []
     for row in shared_rows(root):
+        if row["status"] == "archived":
+            continue
         card = {key: row[key] for key in
                 ("id", "task", "status", "machine", "machine_label", "codex_task")}
         links = [{"label": "Chat", "url": row["codex_task"]}] if row["codex_task"] else []
@@ -238,6 +240,8 @@ def change(rows, args):
         return row, True
     if row["status"] != args.expected:
         raise QueueError(f"{args.id} is {row['status']!r}, expected {args.expected!r}")
+    if row["status"] == "archived" and args.target != "archived":
+        raise QueueError("an archived task cannot change status")
     if row["status"] == "starting" and args.target == "queued":
         raise QueueError("reconcile the existing dispatch first; starting cannot return directly to queued")
     if args.target in {"starting", "planning"}:
