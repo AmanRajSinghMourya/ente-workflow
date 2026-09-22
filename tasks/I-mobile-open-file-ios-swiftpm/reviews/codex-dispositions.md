@@ -1,8 +1,0 @@
-# Independent Codex implementation review dispositions
-
-Read-only configured gpt-6-astra/xhigh review completed22September2026. Full output codex.md and receipt ../evidence/codex-review.json; immutable base719fbdd58d6e288ee6b52147898358eef10656d3, patch330e9ce91f5e56c3035cd175e06d7beff4f893450781b34951e95415f2eff334, PRD41802f6278f4b154fa7f386828135ce54b89c08474004b67302ad1614b00f2d5. Actual banner confirms approval never and sandbox read-only. Verified unchanged inputs afterward.
-
-- Confirmed bugs: none. Primary agrees based on actual two-file diff, unchanged runtime sources, canonical podspec checksum and preserved native behavior.
-- Accepted verification limits: iPhone17/iOS26.5 text/cached-file evidence. PDF, older iOS/iPad, remote download/decryption and signed-device archive are not newly validated and not claimed; runtime implementations are byte-identical. Package readiness does not enable app SwiftPM/UIScene.
-- CI observation:20workspace suites, mobile policy/format/analyze/FRB and pods are independently inspected local evidence. Hosted CI remains pending PR. Repository-wide lint was not in initial records; exact script subsequently passed with pinned tool vetted, scripts ignored, local Node25.9.0 adaptation (repo-lint-final.json). GitHub dependency-review requires an actual PR and remains pending; fresh open_file/open_file_ios advisory queries are already empty.
-- No unresolved product decisions. Shared fork-main synchronization remains a coordinator-owned publication block. Post-PR same-session Claude and actual Codex bot reviews remain pending and are not replaced by this CLI review.
