@@ -165,15 +165,26 @@ class SharedQueueTests(unittest.TestCase):
         self.assertIn('.workflow/local.json',self.runq('panel',file=legacy,ok=False))
         self.assertEqual(legacy.read_bytes(),before)
 
-    def test_controls_view_uses_live_panel_instead_of_duplicate_static_rows(self):
+    def test_controls_view_uses_live_panel_without_duplicate_list(self):
         self.config.write_text(json.dumps({'machine':'macbook-air','task_controls':True}))
         self.runq('add','--title','Shown live','--context','private context','--thread',THREAD)
         content=self.todo.read_text()
         self.assertIn('```ente-tasks',content)
         self.assertIn('cssclasses: ente-task-home',content)
         self.assertNotIn('Shown live',content)
-        self.assertNotIn('[!todo]',content)
+        self.assertNotIn('[!info]',content)
+        self.assertNotIn('private context',content)
         self.assertEqual(self.runq('panel')['tasks'][0]['task'],'Shown live')
+        self.runq('state','Q001','--from','planning','--to','done')
+        self.assertEqual(self.todo.read_text(),content)
+        self.assertEqual(self.runq('panel')['tasks'][0]['status'],'done')
+
+    def test_empty_controls_view_has_no_duplicate_empty_state(self):
+        self.config.write_text(json.dumps({'machine':'macbook-air','task_controls':True}))
+        self.runq('view')
+        self.assertIn('```ente-tasks',self.todo.read_text())
+        self.assertNotIn('No tasks yet.',self.todo.read_text())
+        self.assertEqual(self.runq('panel')['tasks'],[])
 
     def test_archived_row_disappears_from_daily_views_but_retains_history(self):
         self.runq('add','--title','Retired task','--context','Keep original context','--thread',THREAD)

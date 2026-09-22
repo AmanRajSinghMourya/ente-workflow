@@ -2,26 +2,29 @@
 
 **[Open the task list →](TODO.md)**
 
-Give Codex a job in its chat. That same chat gives you the findings, any decision
-needed and the next step. Obsidian is your task list, with links back to the work.
-Each task has one optional reading page, its PRD, with the current outcome,
-decisions and next step. Agents maintain the PRD and all supporting records.
-A one-line request in Codex chat is enough to start investigation; no template
-or separate task form is needed.
+Drop a one-line task in **todos** on the Mac where it should run:
+[MacBook Air](codex://threads/01a0c925-2578-7972-a1ed-821b273e5b49) ·
+[Mac mini](codex://threads/01a0c925-66f8-7f13-b219-19b3f1d3d06a).
 
-[Workflow chat](codex://threads/01a0b92d-15fb-76a3-a3f1-194acf660e22) · [Task records](tasks/)
+Tasks from these chats enter that Mac's list. Other chats enter TODO only when
+you explicitly ask; ordinary questions and investigations stay outside it.
+The working chat gives you findings, decisions and next steps. Each task has one
+optional reading page, its PRD. Agents maintain the supporting notes.
+
+[Workflow chat](codex://threads/01a0b92d-15fb-76a3-a3f1-194acf660e22)
 
 > [!info]- Agent setup and storage details
 > [Skills](skills/) · [Workflow status](STATUS.md) · [Design decisions](design-log.md)
 >
 > ## Which checkout to use
 >
-> | Machine | Code checkout | Shared task records and skills |
+> | Machine | Code checkout | Local task records and personal skills |
 > | --- | --- | --- |
 > | MacBook Air | `/Users/amanraj/development/ente` | `/Users/amanraj/development/ente-workflow` |
 > | Aman's Mac mini | `/Users/aman/Development/ente` | `/Users/aman/Development/ente-workflow` |
 >
-> Use the requested machine and checkout; match both the host and exact path in
+> Posting in a machine-specific `todos` chat selects that Mac for the task and
+> its notes. Otherwise ask if the machine is unspecified. Match host and path in
 > Codex's project list. Record that assignment in the agent's opening context and
 > BOARD's internal details; avoid repeating it in the readable PRD or chat summary.
 > Each machine has one main checkout. On the mini, new planning tasks use
@@ -29,10 +32,11 @@ or separate task form is needed.
 > under its `.worktrees/` after the applicable plan approval. Do not create a
 > second clone or alternate between checkouts. Reuse the task's assignment on
 > retries. Historical records can retain the paths where old work happened.
-> Skills and task notes synchronize through the private `ente-workflow` GitHub
-> repository after host setup. The daily TODO combines both machines; each agent
-> updates its own machine's queue using the helper. Sync does not move work between
-> machines or start remote tasks. [Sync help](skills/ente-workflow-sync/SKILL.md).
+> Skills and workflow instructions are distributed through the private
+> `ente-workflow` Git repository. TODO, queues, plans and reviews stay local for now;
+> neither Git updates nor note edits dispatch work on the other machine.
+> The old five-minute file sync is retired on both Macs. Wait for Aman's new
+> agent distribution details; do not recreate it. [Distribution](skills/ente-workflow-sync/SKILL.md).
 >
 > ## Where everything lives
 >
@@ -43,7 +47,10 @@ or separate task form is needed.
 > `~/.codex/skills/` and `~/.claude/skills/` link here. Vendor-managed system and
 > plugin packs stay with their installers. Sharing instructions does not give an
 > agent tools that only exist in the other app; use available equivalents or report
-> the missing capability.
+> the missing capability. For Ente, existing code patterns take precedence over
+> generic Dart/Flutter tutorials. A skill does not authorize a new dependency,
+> router or architecture. The personal Sentry CLI skill is retired here because
+> that CLI is unavailable; vendor-managed integrations remain separate.
 >
 > `tasks/<task-name>/` holds the PRD, decisions, tests, screenshots and reviews.
 > After you approve implementation, the checkout goes under Ente's `.worktrees/`,

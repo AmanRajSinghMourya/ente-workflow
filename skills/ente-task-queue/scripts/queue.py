@@ -195,7 +195,10 @@ def render_view(root):
         lines.append("")
     if not rows:
         lines += ["No tasks yet.", ""]
-    atomic_write(root / "TODO.md", "\n".join(lines))
+    content = "\n".join(lines)
+    target = root / "TODO.md"
+    if not target.exists() or target.read_text() != content:
+        atomic_write(target, content)
     return {"tasks": len(rows), "path": str(root / "TODO.md")}
 
 

@@ -26,16 +26,21 @@ Record the actual message/source, allowed actions and remaining decision gates i
 the PRD and task brief. Do not demand an approval already supplied, extend the
 exception to other work, or treat an unverified file claim as user authorization.
 
-At the start of a concrete task in its own Codex chat, use `$ente-task-queue` to
-automatically record that existing chat in TODO; do not wait for Aman to ask for
-tracking or start another chat. For work launched from the queue, maintain its
-existing row. Keep the task's PRD/BOARD and chat link current for Obsidian to read.
-Mark it `needs decision` when the plan is ready for Aman, then update progress as
-approved work proceeds. A status label never substitutes for the approval message.
+TODO intake is opt-in outside the dedicated `todos` chats. Use `$ente-task-queue`
+only for tasks submitted there, an explicit add-to-TODO request elsewhere, or an
+existing queue entry. Do not automatically register a direct task, investigation
+or question. Work launched from the queue keeps its existing row and chat link;
+maintain its status as approved work proceeds. Keep the PRD/BOARD current for
+implementation continuity even when the task is not listed in TODO. A status
+label never substitutes for an approval message.
 
 ## Understand and plan before editing product code
 
-1. Inspect the relevant code, tests and analogous implementations. For design,
+1. Inspect the relevant code, tests and analogous implementations. Existing Ente
+   navigation, network clients, architecture and test conventions take precedence
+   over generic Dart/Flutter tutorials. Do not add a package or replace an existing
+   pattern merely because a skill uses it. Verify required tools are available.
+   For design,
    UI/UX or Figma requests, first load `$ente-design-decisions`; it checks the
    design team's in-flight work and existing precedents. Resolve facts
    from those sources before asking Aman. For a remaining product/design choice
@@ -71,8 +76,9 @@ for approval before implementing it. Do not add permission gates to ordinary rea
 Resolve the host and assigned checkout from the shared root's
 [START-HERE.md](../../START-HERE.md), and record both in BOARD's internal details.
 Use the same assignment through implementation and review; do not repeat machine
-routing boilerplate in the PRD or the human-facing summary. The two mini checkouts
-share one host-local TODO and records folder; never use the laptop's paths there.
+routing boilerplate in the PRD or the human-facing summary. Each Mac has one
+primary Ente checkout and local task records; never use the laptop's paths on the
+mini. Ask which machine to use when Aman has not specified it for a new task.
 
 After approval, fetch current main, check the approved plan still fits that source,
 and create a short `aman/<surface>-<task>` branch with its checkout directly under

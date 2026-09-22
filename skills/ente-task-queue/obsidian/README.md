@@ -7,11 +7,11 @@ and PR links appear when those records exist. Detailed agent records stay out
 of this list.
 
 Status changes save through `queue.py`. They do not approve code, open PRs or
-dispatch work. The other Mac's tasks are readable here; update them in their chat.
+dispatch work. Imported historical tasks may still be readable here; this is not a live view of the other Mac.
 
 ## Install on each Mac
 
-After workflow sync is configured, run:
+After this host's `.workflow/local.json` identifies its machine, run:
 
 ```sh
 python3 -B ~/.codex/skills/ente-task-queue/scripts/install_controls.py
@@ -22,6 +22,9 @@ plugins. Open TODO in Reading view. Confirm the local extension's access before
 first enabling it. The installer preserves other plugins and does not change
 Obsidian's trust settings.
 
-The extension links to this folder; Git synchronizes its source. Obsidian settings
-and the host's activation flag stay local. After a source update, reload the
-extension to use it. Hosts without it retain the plain Markdown task list.
+The extension links to this folder; Git can distribute its source. Obsidian settings
+and activation stay local. After a source update, reload the extension to use it.
+When controls are enabled, TODO contains only the interactive task panel. There
+is no duplicate fallback box. Hosts configured without controls use a plain
+Markdown list instead.
+Task lists and records are not synchronized; the five-minute file sync is retired.
