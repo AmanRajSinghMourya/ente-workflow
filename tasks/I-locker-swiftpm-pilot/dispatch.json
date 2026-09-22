@@ -14,7 +14,7 @@
       "project_id": "local-ac1dc9d855099b51090b99fd92b5a561",
       "task_name": "I-mobile-ente-mail-swiftpm",
       "thread_id": "01a0c737-8c9d-74d2-8a69-fc2ee0f51dc2",
-      "status": "planning",
+      "status": "deferred",
       "first_turn": {
         "model": "gpt-6-astra",
         "effort": "xhigh",
@@ -40,7 +40,11 @@
           "id": ":workspace"
         }
       },
-      "blocker": "Existing app task retains workspace-write/on-request after new turn and supported archive/restore; normal queue lock access denied. Requires per-task permission selection in the app. No duplicate created."
+      "blocker": "Cancelled by Aman for one-time local task cleanup, relayed by source coordinator on 22 September 2026. Do not resume or recreate.",
+      "previous_status": "planning",
+      "previous_blocker": "Existing app task retains workspace-write/on-request after new turn and supported archive/restore; normal queue lock access denied. Requires per-task permission selection in the app. No duplicate created.",
+      "cancelled_at": "2026-09-22T08:12:31.418926+00:00",
+      "archived": true
     },
     {
       "queue_id": "Q002",
@@ -50,7 +54,7 @@
       "project_id": "local-a0f48e7f2a6d317290c1ab9e6791ed49",
       "task_name": "I-mobile-ente-screen-cover-swiftpm",
       "thread_id": "01a0c739-e967-7e10-b51f-441b1226063f",
-      "status": "needs decision",
+      "status": "deferred",
       "latest_verified_turn": {
         "turn_id": "01a0c739-ea3b-7b80-ab11-589812359386",
         "model": "gpt-6-astra",
@@ -63,9 +67,13 @@
           "id": ":danger-full-access"
         }
       },
-      "blocker": "Only shared fork-main approval/update remains before publication. Scoped local commit and checks/review complete; post-PR same-session Claude and Codex bot reviews remain pending.",
+      "blocker": "Cancelled by Aman for one-time local task cleanup, relayed by source coordinator on 22 September 2026. Do not resume or recreate.",
       "head_sha": "3356059deb6318388d65662fdf53d1244b70fc3b",
-      "publication_record": "../I-mobile-ente-screen-cover-swiftpm/publication.json"
+      "publication_record": "../I-mobile-ente-screen-cover-swiftpm/publication.json",
+      "previous_status": "needs decision",
+      "previous_blocker": "Only shared fork-main approval/update remains before publication. Scoped local commit and checks/review complete; post-PR same-session Claude and Codex bot reviews remain pending.",
+      "cancelled_at": "2026-09-22T08:12:31.418926+00:00",
+      "archived": true
     },
     {
       "queue_id": "Q003",
@@ -75,7 +83,7 @@
       "project_id": "local-ac1dc9d855099b51090b99fd92b5a561",
       "task_name": "I-mobile-open-file-ios-swiftpm",
       "thread_id": "01a0c73b-4733-76a3-a6c5-655aa04909d4",
-      "status": "needs decision",
+      "status": "deferred",
       "latest_verified_turn": {
         "turn_id": "01a0c73b-4842-7460-9496-3c0986d6268e",
         "model": "gpt-6-astra",
@@ -88,9 +96,13 @@
           "id": ":danger-full-access"
         }
       },
-      "blocker": "Only shared fork-main approval/update remains before publication. Exact scoped local commit and checks/review complete; same-session Claude and actual Codex bot reviews follow publication.",
+      "blocker": "Cancelled by Aman for one-time local task cleanup, relayed by source coordinator on 22 September 2026. Do not resume or recreate.",
       "head_sha": "02aab68dd894690ce934a206fffd456f5acba151",
-      "publication_record": "../I-mobile-open-file-ios-swiftpm/publication.json"
+      "publication_record": "../I-mobile-open-file-ios-swiftpm/publication.json",
+      "previous_status": "needs decision",
+      "previous_blocker": "Only shared fork-main approval/update remains before publication. Exact scoped local commit and checks/review complete; same-session Claude and actual Codex bot reviews follow publication.",
+      "cancelled_at": "2026-09-22T08:12:31.418926+00:00",
+      "archived": true
     },
     {
       "queue_id": "Q005",
@@ -100,7 +112,7 @@
       "project_id": "local-a0f48e7f2a6d317290c1ab9e6791ed49",
       "task_name": "I-mobile-fluttertoast-swiftpm",
       "thread_id": "01a0c73b-4aa5-7d80-81cb-9471a564c1ff",
-      "status": "needs decision",
+      "status": "deferred",
       "latest_verified_turn": {
         "turn_id": "01a0c73b-4b84-7bb2-9821-f8d3b8e09360",
         "model": "gpt-6-astra",
@@ -113,7 +125,11 @@
           "id": ":danger-full-access"
         }
       },
-      "blocker": "Awaiting Aman: accept OS-default native plain-toast placement on Android API26\u201329 for fluttertoast9.1.0, or defer at8.2.14. Claude design consultation complete; no implementation or native validation yet."
+      "blocker": "Cancelled by Aman for one-time local task cleanup, relayed by source coordinator on 22 September 2026. Do not resume or recreate.",
+      "previous_status": "needs decision",
+      "previous_blocker": "Awaiting Aman: accept OS-default native plain-toast placement on Android API26\u201329 for fluttertoast9.1.0, or defer at8.2.14. Claude design consultation complete; no implementation or native validation yet.",
+      "cancelled_at": "2026-09-22T08:12:31.418926+00:00",
+      "archived": true
     },
     {
       "queue_id": "Q006",
@@ -123,7 +139,7 @@
       "project_id": "local-ac1dc9d855099b51090b99fd92b5a561",
       "task_name": "I-mobile-ua-client-hints-swiftpm",
       "thread_id": "01a0c73b-4eeb-7c31-af6a-fe775f2970c3",
-      "status": "needs decision",
+      "status": "deferred",
       "latest_verified_turn": {
         "turn_id": "01a0c73b-4ffb-7401-b5dd-ce76e6a6e0bc",
         "model": "gpt-6-astra",
@@ -136,9 +152,23 @@
           "id": ":danger-full-access"
         }
       },
-      "blocker": "Only shared fork-main fast-forward approval remains before publication. Scoped commit and local checks/review complete; post-PR same-session Claude and bot reviews remain undone.",
+      "blocker": "Cancelled by Aman for one-time local task cleanup, relayed by source coordinator on 22 September 2026. Do not resume or recreate.",
       "head_sha": "0c9434b707e703b46640c7979f070411049390f1",
-      "publication_record": "../I-mobile-ua-client-hints-swiftpm/publication.json"
+      "publication_record": "../I-mobile-ua-client-hints-swiftpm/publication.json",
+      "previous_status": "needs decision",
+      "previous_blocker": "Only shared fork-main fast-forward approval remains before publication. Scoped commit and local checks/review complete; post-PR same-session Claude and bot reviews remain undone.",
+      "cancelled_at": "2026-09-22T08:12:31.418926+00:00",
+      "archived": true
     }
-  ]
+  ],
+  "pickup_status": "PAUSED",
+  "batch_status": "cancelled_by_user",
+  "cleanup": {
+    "status": "complete",
+    "recovery_path": "/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z",
+    "source_recovery_bytes": 106045,
+    "primary_checkouts_preserved": true,
+    "worktrees_removed": 6,
+    "local_branches_removed": 5
+  }
 }

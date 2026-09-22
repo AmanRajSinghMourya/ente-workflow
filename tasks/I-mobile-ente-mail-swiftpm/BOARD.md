@@ -1,5 +1,7 @@
 # SwiftPM: ente_mail
 
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+
 Mail's SwiftPM packaging is still at planning because this task cannot write its
 workflow records. Implementation and Claude design review have not started, so no
 mail behavior has changed. Next: restore access for the existing Mail task, then

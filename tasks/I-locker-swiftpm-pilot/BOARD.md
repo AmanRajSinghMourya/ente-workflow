@@ -1,5 +1,7 @@
 # SwiftPM pilot
 
+**Current: deferred — cancelled by Aman on 22 September 2026.** The five dispatched tasks are archived, pickup is paused, and local task work is abandoned. The six unselected rows remain deferred. The earlier implementation/publication instructions below are historical and do not authorize resumption. Task plans, reviews and recovery evidence are preserved.
+
 Three SwiftPM changes are implemented and validated locally, awaiting the shared
 fork update before publication. Mail is blocked by task permissions. Fluttertoast
 needs a decision about Android toast positioning. No PR has opened. Next: resolve

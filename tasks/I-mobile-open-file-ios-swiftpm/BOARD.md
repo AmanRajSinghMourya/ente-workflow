@@ -1,5 +1,7 @@
 # Locker file opening: SwiftPM readiness
 
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+
 Locker’s dependency update is committed locally. Native file-opening checks and all 20 mobile test suites passed; independent Codex review found no bugs. This prepares the plugin for SwiftPM while preserving current behavior. Publication awaits the coordinator’s requested approval to update the shared fork’s main branch. Recommendation: approve that shared update, then publish and complete the required Claude and GitHub bot reviews.
 
 - [Codex chat](codex://threads/01a0c73b-4733-76a3-a6c5-655aa04909d4)

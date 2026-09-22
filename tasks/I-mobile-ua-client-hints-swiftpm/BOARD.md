@@ -1,5 +1,7 @@
 # ua_client_hints — ready locally, publication pending
 
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+
 The ua_client_hints upgrade is committed locally. User-agent output and privacy resources are preserved, and all 20 workspace suites plus native SwiftPM/CocoaPods checks passed. Publication waits for the coordinator’s requested approval to update the shared fork’s main branch, avoiding unrelated commits in this PR. Recommendation: keep publication held; after approval, publish and complete the required Claude code review and GitHub bot review.
 
 - [Codex chat](codex://threads/01a0c73b-4eeb-7c31-af6a-fe775f2970c3)

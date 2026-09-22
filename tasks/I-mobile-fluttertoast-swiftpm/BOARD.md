@@ -1,5 +1,7 @@
 # Fluttertoast SwiftPM
 
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+
 Q005 is awaiting your decision. Fluttertoast 9.1.0 changes the position of Photos’ “Failed to download preview!” notice on Android 8–10 to the device’s default bottom placement. I recommend accepting this small change, then verifying iOS and Android behavior before any PR. Deferring keeps 8.2.14 and current placement. No product edits or native builds have occurred.
 
 - [Codex chat](codex://threads/01a0c73b-4aa5-7d80-81cb-9471a564c1ff)

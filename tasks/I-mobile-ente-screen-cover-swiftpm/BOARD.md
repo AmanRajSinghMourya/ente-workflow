@@ -1,5 +1,7 @@
 # Screen cover SwiftPM
 
+**Deferred — cancelled by Aman on 22 September 2026.** Local task work is abandoned under the one-time cleanup request. The existing chat is archived; no restart or publication is authorized. Plans, reviews and historical evidence below are retained. Recovery: `/Users/aman/Documents/Codex/ente-local-task-recovery-20260922T075859Z`.
+
 SwiftPM packaging is implemented and committed locally. Native simulator checks
 confirm that background privacy covers still appear and disappear as expected;
 CocoaPods also works. Publication is waiting for the shared approval to update

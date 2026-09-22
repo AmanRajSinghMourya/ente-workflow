@@ -1,5 +1,7 @@
 # Locker Swift Package Manager pilot
 
+**Current: deferred — cancelled by Aman on 22 September 2026.** The five dispatched tasks are archived, pickup is paused, and local task work is abandoned. The six unselected rows remain deferred. The earlier implementation/publication instructions below are historical and do not authorize resumption. Task plans, reviews and recovery evidence are preserved.
+
 Status: five-package pilot authorized to start immediately on 22 September 2026. The remaining six rows stay deferred.
 Source discussion: [Build Codex productivity workflow](codex://threads/01a0b92d-15fb-76a3-a3f1-194acf660e22).
 Mac mini setup: [Set up Mac mini Ente workflow](codex://threads/01a0c6ea-8e55-7c00-8798-52d124669141).
