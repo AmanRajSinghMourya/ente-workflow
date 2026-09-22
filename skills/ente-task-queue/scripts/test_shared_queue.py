@@ -103,7 +103,7 @@ class SharedQueueTests(unittest.TestCase):
         self.assertIn('Sync is waiting',content)
         self.assertNotIn('internal trace',content)
 
-    def test_panel_is_read_only_and_separates_machine_ownership(self):
+    def test_daily_views_show_only_this_machine_and_preserve_imported_history(self):
         self.runq('add','--title','Air task','--context','PRIVATE_AUTHORIZATION_AIR')
         self.config.write_text(json.dumps({'machine':'mac-mini'}))
         self.runq('add','--title','Mini task','--context','PRIVATE_AUTHORIZATION_MINI')
@@ -120,13 +120,24 @@ class SharedQueueTests(unittest.TestCase):
         self.assertEqual(panel['machine'],'macbook-air')
         self.assertEqual(panel['sync'],{'status':'pending','time':'2026-09-22T10:00:00+00:00'})
         self.assertEqual({(task['machine'],task['editable']) for task in panel['tasks']},
-                         {('macbook-air',True),('mac-mini',False)})
+                         {('macbook-air',True)})
         for task in panel['tasks']:
             self.assertEqual(set(task),{'id','task','status','machine','machine_label',
                                         'codex_task','links','editable'})
             self.assertEqual(task['links'],[])
         self.assertNotIn('PRIVATE_',json.dumps(panel))
         self.assertEqual(before,{path:(path.read_bytes(),path.stat().st_mtime_ns) for path in paths})
+        self.runq('view')
+        self.assertIn('Air task',self.todo.read_text())
+        self.assertNotIn('Mini task',self.todo.read_text())
+        self.config.write_text(json.dumps({'machine':'mac-mini'}))
+        self.assertEqual([task['task'] for task in self.runq('panel')['tasks']],['Mini task'])
+        self.runq('view')
+        self.assertIn('Mini task',self.todo.read_text())
+        self.assertNotIn('Air task',self.todo.read_text())
+        self.assertEqual(len(self.runq('list','--all')),2)
+        for path in paths[1:]:
+            self.assertEqual(path.read_bytes(),before[path][0])
 
     def test_panel_and_markdown_preserve_the_same_real_links(self):
         folder=self.root/'tasks/B-auth-panel';folder.mkdir(parents=True)

@@ -7,7 +7,8 @@ and PR links appear when those records exist. Detailed agent records stay out
 of this list.
 
 Status changes save through `queue.py`. They do not approve code, open PRs or
-dispatch work. Imported historical tasks may still be readable here; this is not a live view of the other Mac.
+dispatch work. The daily view shows only this Mac's tasks. Imported history stays
+in the local records and can be inspected with `queue.py list --all`.
 
 ## Install on each Mac
 

@@ -131,6 +131,7 @@ def shared_rows(root):
 def task_cards(root):
     """Read compact task summaries and existing links; caller holds the shared lock."""
     root = Path(root)
+    machine = json.loads((root / ".workflow/local.json").read_text())["machine"]
     notes = {}
     for folder in sorted((root / "tasks").glob("*")):
         if not folder.is_dir():
@@ -140,7 +141,7 @@ def task_cards(root):
             notes.setdefault("codex://threads/" + identifier, (folder, text))
     cards = []
     for row in shared_rows(root):
-        if row["status"] == "archived":
+        if row["machine"] != machine or row["status"] == "archived":
             continue
         card = {key: row[key] for key in
                 ("id", "task", "status", "machine", "machine_label", "codex_task")}
@@ -158,7 +159,7 @@ def task_cards(root):
 
 
 def render_view(root):
-    """Generate a read-only combined list; caller holds .workflow/sync.lock."""
+    """Generate this machine's read-only list; caller holds .workflow/sync.lock."""
     root = Path(root)
     rows = task_cards(root)
     config_path = root / ".workflow/local.json"
