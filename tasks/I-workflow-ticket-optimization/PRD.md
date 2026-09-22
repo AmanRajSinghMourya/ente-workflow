@@ -2,9 +2,9 @@
 
 [Working chat](codex://threads/01a0c8ab-af62-7271-8947-165e47061813)
 
-The existing Zoho Desk server is saved as zoho-desk in personal Codex configuration on MacBook Air. Its endpoint returned HTTP 401 with an OAuth challenge. Codex OAuth login has opened Zoho consent in the browser; authorization and ticket access are not yet verified.
+The existing Zoho Desk server is saved as zoho-desk in personal Codex configuration on MacBook Air. Its endpoint returned HTTP 401 with an OAuth challenge. Codex OAuth login succeeded. This running task has not loaded the new tools yet; ticket access remains unverified.
 
-Next: finish browser authorization, then verify the organization and all three supplied tickets, including conversation bodies and actual attachment/log access. No ticket has been retrieved yet. The supplied console screenshot shows getTicket, getTicketConversations and getThread; search/tag filtering and attachment downloads are not established.
+Next: restart/refresh Codex MCP, then verify the organization and all three supplied tickets, including conversation bodies and actual attachment/log access. No ticket has been retrieved yet. The supplied console screenshot shows getTicket, getTicketConversations and getThread; search/tag filtering and attachment downloads are not established.
 
 The intended workflow retrieves relevant assigned tickets, checks conversations and logs, then investigates source and merged changes. Outcomes include evidence-backed diagnosis, a draft request for missing settings or fresh logs, reproduction steps, or mitigation. Customer replies, status/assignment changes and product fixes require separate authorization.
 
