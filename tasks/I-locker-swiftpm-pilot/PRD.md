@@ -1,5 +1,7 @@
 # Locker Swift Package Manager pilot
 
+**Consolidation update:** all eleven pilot rows are cancelled and excluded from the active queue. The sole retained product checkout is `/Users/aman/Development/ente`; previous assignments below are historical. No old task may resume.
+
 **Current: deferred — cancelled by Aman on 22 September 2026.** The five dispatched tasks are archived, pickup is paused, and local task work is abandoned. The six unselected rows remain deferred. The earlier implementation/publication instructions below are historical and do not authorize resumption. Task plans, reviews and recovery evidence are preserved.
 
 Status: five-package pilot authorized to start immediately on 22 September 2026. The remaining six rows stay deferred.
