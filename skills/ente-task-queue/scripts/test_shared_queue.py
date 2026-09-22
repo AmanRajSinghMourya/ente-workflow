@@ -103,4 +103,77 @@ class SharedQueueTests(unittest.TestCase):
         self.assertIn('Sync is waiting',content)
         self.assertNotIn('internal trace',content)
 
+    def test_panel_is_read_only_and_separates_machine_ownership(self):
+        self.runq('add','--title','Air task','--context','PRIVATE_AUTHORIZATION_AIR')
+        self.config.write_text(json.dumps({'machine':'mac-mini'}))
+        self.runq('add','--title','Mini task','--context','PRIVATE_AUTHORIZATION_MINI')
+        self.config.write_text(json.dumps({'machine':'macbook-air'}))
+        (self.root/'.workflow/sync-status.json').write_text(json.dumps({
+            'status':'pending','time':'2026-09-22T10:00:00+00:00',
+            'error':'PRIVATE_SYNC_ERROR',
+        }))
+        paths=[self.todo,self.root/'.workflow/queues/macbook-air.md',
+               self.root/'.workflow/queues/mac-mini.md']
+        before={path:(path.read_bytes(),path.stat().st_mtime_ns) for path in paths}
+        panel=self.runq('panel')
+        self.assertEqual(set(panel),{'machine','tasks','sync'})
+        self.assertEqual(panel['machine'],'macbook-air')
+        self.assertEqual(panel['sync'],{'status':'pending','time':'2026-09-22T10:00:00+00:00'})
+        self.assertEqual({(task['machine'],task['editable']) for task in panel['tasks']},
+                         {('macbook-air',True),('mac-mini',False)})
+        for task in panel['tasks']:
+            self.assertEqual(set(task),{'id','task','status','machine','machine_label',
+                                        'codex_task','links','editable'})
+            self.assertEqual(task['links'],[])
+        self.assertNotIn('PRIVATE_',json.dumps(panel))
+        self.assertEqual(before,{path:(path.read_bytes(),path.stat().st_mtime_ns) for path in paths})
+
+    def test_panel_and_markdown_preserve_the_same_real_links(self):
+        folder=self.root/'tasks/B-auth-panel';folder.mkdir(parents=True)
+        chat=f'codex://threads/{THREAD}'
+        pr='https://github.com/AmanRajSinghMourya/ente/pull/5'
+        (folder/'PRD.md').write_text(f'[Chat]({chat})\nPRIVATE_PRD_AUTHORIZATION\n')
+        (folder/'BOARD.md').write_text(f'[Chat]({chat})\n[PR]({pr})\n')
+        (folder/'reviews').mkdir()
+        (folder/'reviews/claude-design.md').write_text('PRIVATE_CLAUDE_TRANSCRIPT')
+        self.runq('add','--title','Auth task','--context','PRIVATE_QUEUE_CONTEXT','--thread',THREAD)
+        panel=self.runq('panel')
+        card=panel['tasks'][0]
+        expected=[{'label':'Chat','url':chat},
+                  {'label':'Plan','url':'tasks/B-auth-panel/PRD.md'},
+                  {'label':'Claude review','url':'tasks/B-auth-panel/reviews/claude-design.md'},
+                  {'label':'PR','url':pr}]
+        self.assertEqual(card['links'],expected)
+        self.assertEqual(card['codex_task'],chat)
+        self.assertNotIn('PRIVATE_',json.dumps(panel))
+        self.runq('view')
+        markdown=self.todo.read_text()
+        for link in expected:
+            self.assertIn(f"[{link['label']}]({link['url']})",markdown)
+        self.assertEqual(markdown,
+            '# Tasks\n\nOpen the task chat for findings, decisions and next steps.\n\n'
+            '## Working\n\n- **Auth task** · MacBook Air · planning\n  ' +
+            ' · '.join(f"[{link['label']}]({link['url']})" for link in expected) + '\n')
+        self.assertEqual(panel['sync'],{'status':'unknown','time':None})
+
+    def test_panel_needs_shared_configuration_and_reads_during_conflict(self):
+        self.runq('add','--title','Task','--context','x')
+        (self.root/'.workflow/sync-status.json').write_text(json.dumps({'status':'conflict'}))
+        self.assertEqual(self.runq('panel')['sync'],{'status':'conflict','time':None})
+        legacy=self.root/'legacy.md';legacy.write_text(EMPTY)
+        self.config.unlink()
+        before=legacy.read_bytes()
+        self.assertIn('.workflow/local.json',self.runq('panel',file=legacy,ok=False))
+        self.assertEqual(legacy.read_bytes(),before)
+
+    def test_controls_view_uses_live_panel_instead_of_duplicate_static_rows(self):
+        self.config.write_text(json.dumps({'machine':'macbook-air','task_controls':True}))
+        self.runq('add','--title','Shown live','--context','private context','--thread',THREAD)
+        content=self.todo.read_text()
+        self.assertIn('```ente-tasks',content)
+        self.assertIn('cssclasses: ente-task-home',content)
+        self.assertNotIn('Shown live',content)
+        self.assertNotIn('[!todo]',content)
+        self.assertEqual(self.runq('panel')['tasks'][0]['task'],'Shown live')
+
 if __name__=='__main__': unittest.main()

@@ -109,6 +109,16 @@ The scheduled pickup runs in the main workflow conversation. It processes the
 current host's queue and creates separate user-owned planning tasks; it does not implement
 the tasks itself. Local Codex must be available for the scheduler to run.
 
+## Obsidian controls
+
+Use the [local task controls](obsidian/README.md) for checkboxes, status dropdowns
+and compact task links. The extension reads `queue.py panel` and saves with the
+same compare-and-set `state` command; the generated note is never edited by hand.
+Only the task's owning host can change its state. UI labels are shorter than
+internal states (Needs you = `needs decision`, Later = `deferred`, Review =
+`ready for review`). A status change grants no implementation or PR permission.
+Install and enable once per host; sync shares the source, not Obsidian settings.
+
 ## Keep the list current
 
 The working chat carries the findings, recommendation/decision and next step.

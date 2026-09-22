@@ -45,6 +45,7 @@ def arguments():
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("list").add_argument("--all", action="store_true")
     commands.add_parser("view")
+    commands.add_parser("panel")
     add = commands.add_parser("add")
     add.add_argument("--title", required=True)
     add.add_argument("--context", required=True)
@@ -81,11 +82,17 @@ def transact(args):
     with (root / ".workflow/sync.lock").open("a") if root else nullcontext() as shared_lock:
         if shared_lock:
             fcntl.flock(shared_lock, fcntl.LOCK_EX)
+        if root and args.command == "panel":
+            status_file = root / ".workflow/sync-status.json"
+            status = json.loads(status_file.read_text()) if status_file.exists() else {}
+            return {"machine": machine,
+                    "tasks": [dict(card, editable=card["machine"] == machine) for card in task_cards(root)],
+                    "sync": {"status": status.get("status", "unknown"), "time": status.get("time")}}
         if root and args.command == "view":
             return render_view(root)
         if root and args.command == "list" and args.all:
             return shared_rows(root)
-        if not root and (args.command == "view" or getattr(args, "all", False)):
+        if not root and (args.command in {"view", "panel"} or getattr(args, "all", False)):
             raise QueueError("shared view needs this machine's .workflow/local.json")
         with path.with_name("." + path.stem + ".lock").open("a") as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
@@ -121,10 +128,9 @@ def shared_rows(root):
     return rows
 
 
-def render_view(root):
-    """Generate a read-only combined list; caller holds .workflow/sync.lock."""
+def task_cards(root):
+    """Read compact task summaries and existing links; caller holds the shared lock."""
     root = Path(root)
-    rows = shared_rows(root)
     notes = {}
     for folder in sorted((root / "tasks").glob("*")):
         if not folder.is_dir():
@@ -132,6 +138,40 @@ def render_view(root):
         text = "\n".join(p.read_text() for p in (folder / "BOARD.md", folder / "PRD.md") if p.is_file())
         for identifier in re.findall(r"codex://threads/([0-9a-f-]{36})", text):
             notes.setdefault("codex://threads/" + identifier, (folder, text))
+    cards = []
+    for row in shared_rows(root):
+        card = {key: row[key] for key in
+                ("id", "task", "status", "machine", "machine_label", "codex_task")}
+        links = [{"label": "Chat", "url": row["codex_task"]}] if row["codex_task"] else []
+        if row["codex_task"] in notes:
+            folder, note = notes[row["codex_task"]]
+            relative = folder.relative_to(root).as_posix()
+            if (folder / "PRD.md").exists():
+                links.append({"label": "Plan", "url": f"{relative}/PRD.md"})
+            review = next((folder / "reviews" / name for name in
+                ("claude-code.md", "claude-review.md", "claude-design.md")
+                if (folder / "reviews" / name).is_file()), None)
+            if review:
+                links.append({"label": "Claude review", "url": review.relative_to(root).as_posix()})
+            pr = re.search(r"\[(?:PR|Pull request)\]\((https://github\.com/[^)]+/pull/[0-9]+)\)", note, re.I)
+            if pr:
+                links.append({"label": "PR", "url": pr[1]})
+        cards.append(dict(card, links=links))
+    return cards
+
+
+def render_view(root):
+    """Generate a read-only combined list; caller holds .workflow/sync.lock."""
+    root = Path(root)
+    rows = task_cards(root)
+    config_path = root / ".workflow/local.json"
+    config = json.loads(config_path.read_text()) if config_path.exists() else {}
+    if config.get("task_controls"):
+        content = "---\ncssclasses: ente-task-home\n---\n\n```ente-tasks\n```\n"
+        target = root / "TODO.md"
+        if not target.exists() or target.read_text() != content:
+            atomic_write(target, content)
+        return {"tasks": len(rows), "path": str(target)}
     lines = ["# Tasks", "", "Open the task chat for findings, decisions and next steps.", ""]
     status_file = root / ".workflow/sync-status.json"
     status = json.loads(status_file.read_text()) if status_file.exists() else {}
@@ -152,20 +192,7 @@ def render_view(root):
         lines += ([f"> [!todo]- {label} ({len(selected)})", ">"] if folded else [f"## {label}", ""])
         for row in selected:
             title = html.escape(" ".join(row["task"].split())).replace("[", "&#91;").replace("]", "&#93;").replace("*", "&#42;")
-            links = [f"[Chat]({row['codex_task']})"] if row["codex_task"] else []
-            if row["codex_task"] in notes:
-                folder, note = notes[row["codex_task"]]
-                relative = folder.relative_to(root).as_posix()
-                if (folder / "PRD.md").exists():
-                    links.append(f"[Plan]({relative}/PRD.md)")
-                review = next((folder / "reviews" / name for name in
-                    ("claude-code.md", "claude-review.md", "claude-design.md")
-                    if (folder / "reviews" / name).is_file()), None)
-                if review:
-                    links.append(f"[Claude review]({review.relative_to(root).as_posix()})")
-                pr = re.search(r"\[(?:PR|Pull request)\]\((https://github\.com/[^)]+/pull/[0-9]+)\)", note, re.I)
-                if pr:
-                    links.append(f"[PR]({pr[1]})")
+            links = [f"[{link['label']}]({link['url']})" for link in row["links"]]
             lines += [prefix + f"- **{title}** · {row['machine_label']} · {row['status']}",
                       prefix + "  " + " · ".join(links)]
         lines.append("")

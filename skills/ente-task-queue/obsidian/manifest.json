@@ -1,0 +1,9 @@
+{
+  "id": "ente-task-controls",
+  "name": "Ente task controls",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Checkboxes and status chips for Aman's shared task list.",
+  "author": "Aman",
+  "isDesktopOnly": true
+}
