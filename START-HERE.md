@@ -16,18 +16,19 @@ or separate task form is needed.
 >
 > ## Which checkout to use
 >
-> | Machine | Code checkout(s) | Shared task records and skills |
+> | Machine | Code checkout | Shared task records and skills |
 > | --- | --- | --- |
 > | MacBook Air | `/Users/amanraj/development/ente` | `/Users/amanraj/development/ente-workflow` |
-> | Aman's Mac mini | `/Users/aman/Development/ente`, `/Users/aman/Development/ente-2` | `/Users/aman/Development/ente-workflow` |
+> | Aman's Mac mini | `/Users/aman/Development/ente` | `/Users/aman/Development/ente-workflow` |
 >
 > Use the requested machine and checkout; match both the host and exact path in
 > Codex's project list. Record that assignment in the agent's opening context and
 > BOARD's internal details; avoid repeating it in the readable PRD or chat summary.
-> Reuse it on retries. For a batch Aman asks to split on the mini,
-> alternate new tasks between its two checkouts; leave already running tasks in
-> place. Each implementation gets its own worktree under its assigned checkout's
-> `.worktrees/`. Both mini checkouts use the same mini TODO and records folder.
+> Each machine has one main checkout. On the mini, new planning tasks use
+> `/Users/aman/Development/ente`; implementation uses a separate task worktree
+> under its `.worktrees/` after the applicable plan approval. Do not create a
+> second clone or alternate between checkouts. Reuse the task's assignment on
+> retries. Historical records can retain the paths where old work happened.
 > Skills and task notes synchronize through the private `ente-workflow` GitHub
 > repository after host setup. The daily TODO combines both machines; each agent
 > updates its own machine's queue using the helper. Sync does not move work between
@@ -58,6 +59,7 @@ or separate task form is needed.
 >
 > Nearby discoveries are offered for the task list and get their own approval.
 > Personal checks stay in these skills; they are not Ente tooling PRs or proof that
-> unmeasured behavior works. On 22 September Aman authorized starting only the Mac
-> mini's five-package SwiftPM pickup now. The MacBook Air's pickup is paused. Review
-> collection and cleanup have not been brought forward; see [status](STATUS.md).
+> unmeasured behavior works. Aman has abandoned the old Mac mini task batch;
+> historical pilot authorization must not restart it. Start from current requests.
+> Existing schedules keep their configured status unless Aman changes them;
+> see [status](STATUS.md).

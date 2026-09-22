@@ -43,8 +43,9 @@ in that reading path. Keep supporting provenance in the linked evidence.
 
 Resolve the host's records root and assigned repository from
 [START-HERE.md](../../../START-HERE.md). The following is a laptop example;
-on the mini use the assigned `ente` or `ente-2` checkout and its shared
-`/Users/aman/Development/ente-workflow` records root.
+on the mini use `/Users/aman/Development/ente` as the single main checkout,
+its `.worktrees/` for approved implementation, and
+`/Users/aman/Development/ente-workflow` as the shared records root.
 
 For a task such as `B-photos-caption-save`, use:
 

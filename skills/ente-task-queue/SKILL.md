@@ -70,9 +70,12 @@ paused or unavailable, say the item is queued and has not started.
    determined, leave it unchanged and report the ambiguity; never blindly retry.
 2. Run `claim`. It atomically changes the oldest queued item to `starting` and
    returns it, or returns null. Only act on the row returned to this caller.
-3. Resolve the task's assigned host and checkout using START-HERE.md. Respect
-   an existing assignment; for an explicitly split mini batch, alternate new
-   assignments between its two checkouts. Save the chosen path in PRD/BOARD
+3. Resolve the task's assigned host and checkout using START-HERE.md. Each host
+   has one main checkout: `/Users/aman/Development/ente` on Mac mini and
+   `/Users/amanraj/development/ente` on MacBook Air. New planning tasks use that
+   checkout; approved implementation gets its own worktree beneath it. Preserve
+   existing active worktree assignments on retries. Never dispatch abandoned tasks
+   or reuse a retired checkout from historical notes. Save the chosen path in PRD/BOARD
    before dispatch so retries cannot select a different repository. Call
    `list_projects` and match the host and exact path; never select by the label
    `ente` alone. Use `create_thread` with that project and
