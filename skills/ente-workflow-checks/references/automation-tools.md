@@ -8,7 +8,7 @@ Do not move that date earlier to run a test; use the offline fixtures instead.
 ## Collect bot reviews
 
 ```sh
-python3 -B /Users/amanraj/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py --records-root /Users/amanraj/development/ente-workflow
+python3 -B ~/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py
 ```
 
 The collector discovers recently updated author PRs and revisits every tracked or
@@ -40,7 +40,7 @@ save this payload in a task evidence file. Copy the complete revision array from
 ```
 
 ```sh
-python3 -B /Users/amanraj/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py --records-root /Users/amanraj/development/ente-workflow --record-disposition /absolute/assessment.json
+python3 -B ~/.codex/skills/ente-workflow-checks/scripts/pr_reviews.py --record-disposition /absolute/assessment.json
 ```
 
 The same requested hold applies to classification: before `not_before`, the
@@ -56,7 +56,7 @@ rejected merely to empty the pending list.
 ## Audit cleanup eligibility
 
 ```sh
-python3 -B /Users/amanraj/.codex/skills/ente-workflow-checks/scripts/cleanup_guard.py --repo /Users/amanraj/development/ente --records-root /Users/amanraj/development/ente-workflow --activity-evidence /absolute/fresh-activity.json
+python3 -B ~/.codex/skills/ente-workflow-checks/scripts/cleanup_guard.py --repo /absolute/assigned/ente --records-root /absolute/host/ente-workflow --activity-evidence /absolute/fresh-activity.json
 ```
 
 Save stdout in the task's evidence folder. `control.json.cleanup_mode` must be

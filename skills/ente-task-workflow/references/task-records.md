@@ -101,7 +101,8 @@ Unknown or unpreserved ignored files still block cleanup. The cleanup guard
 may recognize only the single `.task` directory link after proving its exact
 lasting target; an ordinary directory or another target is not equivalent.
 
-These local records survive checkout removal and re-cloning Ente; they are not
-a backup against deleting this separate folder or losing the disk. Obsidian can open them as
+These records survive checkout removal and re-cloning Ente. Synced plans and
+review notes have private Git history; raw screenshots/logs/evidence stay on the
+originating host and still need a separate backup. Obsidian can open them as
 ordinary Markdown, but installing it is unnecessary for Codex or Claude to read
 and maintain them.

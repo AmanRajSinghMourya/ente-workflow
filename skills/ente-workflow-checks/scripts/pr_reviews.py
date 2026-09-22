@@ -27,7 +27,7 @@ THREAD_QUERY = """query($owner:String!,$name:String!,$number:Int!,$cursor:String
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--records-root", type=Path, default=Path("/Users/amanraj/development/ente-workflow"))
+    parser.add_argument("--records-root", type=Path, default=Path(__file__).resolve().parents[3])
     action = parser.add_mutually_exclusive_group()
     action.add_argument("--collect", action="store_true", help="Collect GitHub reviews (default)")
     action.add_argument("--record-disposition", type=Path, help="Record one exact revision's assessment from JSON")
@@ -179,7 +179,14 @@ def record_disposition(records_root, assessment_path, now=None):
 
 @contextmanager
 def review_session(root, now):
-    require(not any((parent / ".git").exists() for parent in (root, *root.parents)), "Keep review records outside Git checkouts")
+    require(not any((parent / ".git").exists() or (parent / ".git").is_symlink()
+                    for parent in root.parents), "Keep review records outside enclosing Git checkouts")
+    git_dir = root / ".git"
+    if git_dir.exists() or git_dir.is_symlink():
+        require(git_dir.is_dir() and not git_dir.is_symlink(), "Git review records require a standalone workflow checkout")
+        # This marker opts into storage here; it does not establish remote privacy or approval.
+        require(read_json(root / ".workflow" / "repository.json") == {"repository": "AmanRajSinghMourya/ente-workflow"},
+                "Git review records require the workflow repository marker")
     control = read_json(root / "control.json")
     if now < instant(control["not_before"]):
         yield {"status": "held", "not_before": control["not_before"]}

@@ -26,3 +26,5 @@ tasks/**/backups/
 **/*.key
 **/auth.json
 **/credentials.json
+
+/.workflow/queues/.*.lock

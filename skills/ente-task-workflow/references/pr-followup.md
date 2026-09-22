@@ -1,7 +1,8 @@
 # PR feedback and completed-task cleanup
 
 Shared records live at
-`/Users/amanraj/development/ente-workflow/` and are local, not published.
+the host's `ente-workflow/` folder. Task notes and skills sync privately; runtime
+review/cleanup state and raw evidence stay local. They are not Ente repository files.
 The six-hour follow-ups use this location; read STATUS.md before manual or
 scheduled follow-up work and honor any user-requested hold. Registering a PR does
 not override a hold. Do not assume scheduling a job proves it ran.

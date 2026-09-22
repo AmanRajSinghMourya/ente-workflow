@@ -1,13 +1,13 @@
 # Ente workflow
 
-Private task notes and personal skills shared by Aman's MacBook Air and Mac mini.
+Personal skills and task notes shared privately between Aman's two Macs.
+Open [the task list](TODO.md) in Obsidian; use the task chat for decisions and results.
 
-The task chat contains findings, decisions and the next step. Obsidian shows a
-short task list. Each task keeps its own plan and optional supporting reviews.
+[Start here](START-HERE.md) · [Sync help](skills/ente-workflow-sync/SKILL.md)
 
-Skills have one source per machine, linked from Codex and Claude. Vendor-managed
-plugins and system skill packs remain with their installers.
+Skills and task plans/reviews are versioned here. TODO.md is generated from the
+machine-owned queues. Credentials, app settings, automation state, raw logs,
+screenshots, build artifacts and local backups stay on their original machine.
 
-Initial reconciliation is in progress. Automatic syncing is not enabled yet.
-Task queues are owned by their named machine; TODO.md is a generated local view.
-Credentials, local settings, raw logs and build output are excluded.
+Setup status: the MacBook Air snapshot is published. Mac mini import and the
+first two-machine round trip still need verification; do not call setup complete.

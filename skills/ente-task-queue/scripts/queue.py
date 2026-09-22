@@ -2,6 +2,7 @@
 """A locked Markdown task queue; entries are data, never executed."""
 
 import argparse
+from contextlib import nullcontext
 import fcntl
 import html
 import json
@@ -13,7 +14,8 @@ import tempfile
 from uuid import UUID
 
 
-DEFAULT_FILE = "/Users/amanraj/development/ente-workflow/TODO.md"
+DEFAULT_FILE = str(Path(__file__).resolve().parents[3] / "TODO.md")
+MACHINES = {"macbook-air": "MacBook Air", "mac-mini": "Mac mini"}
 START, END = "<!-- queue:start -->", "<!-- queue:end -->"
 COLUMNS = ("ID", "Task", "Status", "Codex task", "Context")
 KEYS = ("id", "task", "status", "codex_task", "context")
@@ -41,7 +43,8 @@ def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--file", default=DEFAULT_FILE)
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("list")
+    commands.add_parser("list").add_argument("--all", action="store_true")
+    commands.add_parser("view")
     add = commands.add_parser("add")
     add.add_argument("--title", required=True)
     add.add_argument("--context", required=True)
@@ -64,14 +67,112 @@ def transact(args):
     if not path.is_absolute():
         raise QueueError("--file must be an absolute path")
     path = path.resolve()
-    with path.with_name(".TODO.lock").open("a") as lock:
-        fcntl.flock(lock, fcntl.LOCK_EX)
-        original = path.read_bytes().decode("utf-8")
-        prefix, rows, suffix = parse(original)
-        result, changed = change(rows, args)
-        if changed:
-            atomic_write(path, prefix + render(rows) + suffix)
-        return result
+    root = next((parent for parent in path.parents
+                 if (parent / ".workflow/local.json").is_file()), None)
+    machine = None
+    if root:
+        machine = json.loads((root / ".workflow/local.json").read_text()).get("machine")
+        if machine not in MACHINES:
+            raise QueueError("unknown local machine assignment")
+        owned = root / ".workflow/queues" / (machine + ".md")
+        if path not in (root / "TODO.md", owned) and args.command != "list":
+            raise QueueError("only the assigned machine may modify its queue")
+        path = owned
+    with (root / ".workflow/sync.lock").open("a") if root else nullcontext() as shared_lock:
+        if shared_lock:
+            fcntl.flock(shared_lock, fcntl.LOCK_EX)
+        if root and args.command == "view":
+            return render_view(root)
+        if root and args.command == "list" and args.all:
+            return shared_rows(root)
+        if not root and (args.command == "view" or getattr(args, "all", False)):
+            raise QueueError("shared view needs this machine's .workflow/local.json")
+        with path.with_name("." + path.stem + ".lock").open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            original = path.read_bytes().decode("utf-8")
+            prefix, rows, suffix = parse(original)
+            if root and args.command != "list":
+                status_file = root / ".workflow/sync-status.json"
+                status = json.loads(status_file.read_text()) if status_file.exists() else {}
+                if status.get("status") == "conflict" or any(
+                        (root / ".git" / operation).exists()
+                        for operation in ("MERGE_HEAD", "rebase-merge", "rebase-apply")):
+                    raise QueueError("resolve the workflow sync conflict before changing task state")
+                if args.command == "add" and args.thread:
+                    url = thread_url(args.thread)
+                    if any(row["codex_task"] == url and row["machine"] != machine
+                           for row in shared_rows(root)):
+                        raise QueueError("this Codex task is already owned by the other machine")
+            result, changed = change(rows, args)
+            if changed:
+                atomic_write(path, prefix + render(rows) + suffix)
+                if root:
+                    render_view(root)
+            return result
+
+
+def shared_rows(root):
+    rows = []
+    for machine in MACHINES:
+        path = root / ".workflow/queues" / (machine + ".md")
+        if path.exists():
+            rows.extend(dict(row, machine=machine, machine_label=MACHINES[machine])
+                        for row in parse(path.read_text())[1])
+    return rows
+
+
+def render_view(root):
+    """Generate a read-only combined list; caller holds .workflow/sync.lock."""
+    root = Path(root)
+    rows = shared_rows(root)
+    notes = {}
+    for folder in sorted((root / "tasks").glob("*")):
+        if not folder.is_dir():
+            continue
+        text = "\n".join(p.read_text() for p in (folder / "BOARD.md", folder / "PRD.md") if p.is_file())
+        for identifier in re.findall(r"codex://threads/([0-9a-f-]{36})", text):
+            notes.setdefault("codex://threads/" + identifier, (folder, text))
+    lines = ["# Tasks", "", "Open the task chat for findings, decisions and next steps.", ""]
+    status_file = root / ".workflow/sync-status.json"
+    status = json.loads(status_file.read_text()) if status_file.exists() else {}
+    if status.get("status") == "conflict":
+        lines += ["> Sync needs attention: two edits conflict. Ask the workflow chat to resolve them.", ""]
+    elif status.get("status") == "pending":
+        lines += ["> Sync is waiting. Changes are saved on this Mac; the other Mac may show an older list.", ""]
+    groups = (("Needs you", {"needs decision", "blocked"}),
+              ("Ready for review", {"ready for review"}),
+              ("Working", {"starting", "planning", "implementing"}),
+              ("Later", {"queued", "deferred"}), ("Done", {"done"}))
+    for label, states in groups:
+        selected = [row for row in rows if row["status"] in states]
+        if not selected:
+            continue
+        folded = label in {"Done", "Later"}
+        prefix = "> " if folded else ""
+        lines += ([f"> [!todo]- {label} ({len(selected)})", ">"] if folded else [f"## {label}", ""])
+        for row in selected:
+            title = html.escape(" ".join(row["task"].split())).replace("[", "&#91;").replace("]", "&#93;").replace("*", "&#42;")
+            links = [f"[Chat]({row['codex_task']})"] if row["codex_task"] else []
+            if row["codex_task"] in notes:
+                folder, note = notes[row["codex_task"]]
+                relative = folder.relative_to(root).as_posix()
+                if (folder / "PRD.md").exists():
+                    links.append(f"[Plan]({relative}/PRD.md)")
+                review = next((folder / "reviews" / name for name in
+                    ("claude-code.md", "claude-review.md", "claude-design.md")
+                    if (folder / "reviews" / name).is_file()), None)
+                if review:
+                    links.append(f"[Claude review]({review.relative_to(root).as_posix()})")
+                pr = re.search(r"\[(?:PR|Pull request)\]\((https://github\.com/[^)]+/pull/[0-9]+)\)", note, re.I)
+                if pr:
+                    links.append(f"[PR]({pr[1]})")
+            lines += [prefix + f"- **{title}** · {row['machine_label']} · {row['status']}",
+                      prefix + "  " + " · ".join(links)]
+        lines.append("")
+    if not rows:
+        lines += ["No tasks yet.", ""]
+    atomic_write(root / "TODO.md", "\n".join(lines))
+    return {"tasks": len(rows), "path": str(root / "TODO.md")}
 
 
 def change(rows, args):
@@ -206,7 +307,7 @@ def atomic_write(path, text):
             stream.write(text.encode("utf-8"))
             stream.flush()
             os.fsync(stream.fileno())
-        os.chmod(temporary, path.stat().st_mode & 0o777)
+        os.chmod(temporary, (path.stat().st_mode & 0o777) if path.exists() else 0o644)
         os.replace(temporary, path)
     finally:
         if temporary is not None:

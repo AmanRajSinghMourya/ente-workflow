@@ -96,7 +96,7 @@ Because excluded notes are absent from the code fingerprint, always check the PR
 separate digest during review. Record base SHA, approval, current slice, dependencies,
 blockers and next action. The acting agent maintains these notes; Aman should not have to.
 
-Use `/Users/amanraj/development/ente-workflow/tasks/<task-name>/` for
+Use the current host's `ente-workflow/tasks/<task-name>/` folder (START-HERE.md) for
 review logs, validation receipts and preserved task notes outside the checkout.
 Draft plans can live there before worktree approval. Both CLIs read these ordinary
 files; no notes application is required. A link back into a deletable checkout is
@@ -165,7 +165,7 @@ observed behavior and a proposed improvement. While an observer batch is active,
 it owns writes to that file; merge the parent's discoveries after it returns.
 Keep unrelated changes out of the current implementation. At completion, show a
 short deduplicated list and offer
-to add selected items to `/Users/amanraj/development/ente-workflow/TODO.md`
+to add selected items to this host's TODO using the queue helper
 or leave them in the task record. Adding to TODO authorizes investigation/planning,
 not implementation; each item returns through the normal plan/design approval.
 A defect in the current change or an unmet acceptance criterion still belongs in

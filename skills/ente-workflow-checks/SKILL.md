@@ -5,8 +5,8 @@ description: Run Ente checks for investigation-only work, agreed file scope, val
 
 # Ente workflow checks
 
-Use this skill's `scripts/` directory. Its canonical location is
-`/Users/amanraj/development/ente-workflow/skills/ente-workflow-checks/scripts/`;
+Use this skill's `scripts/` directory. Its canonical location is the current host's
+`ente-workflow/skills/ente-workflow-checks/scripts/`;
 `~/.codex/skills/ente-workflow-checks` and `~/.claude/skills/ente-workflow-checks`
 link to the same skill. Read `scripts/README.md` for commands. These are personal
 tools, not Ente source, and have no publication/CI plan. Do not copy them into a
