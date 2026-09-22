@@ -20,7 +20,7 @@ START, END = "<!-- queue:start -->", "<!-- queue:end -->"
 COLUMNS = ("ID", "Task", "Status", "Codex task", "Context")
 KEYS = ("id", "task", "status", "codex_task", "context")
 STATES = ("queued", "starting", "planning", "needs decision", "implementing",
-          "ready for review", "done", "deferred", "blocked")
+          "ready for review", "done", "deferred", "blocked", "cancelled")
 LINK_REQUIRED = {"planning", "needs decision", "implementing", "ready for review", "done"}
 
 
@@ -43,7 +43,9 @@ def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--file", default=DEFAULT_FILE)
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("list").add_argument("--all", action="store_true")
+    listing = commands.add_parser("list")
+    listing.add_argument("--all", action="store_true")
+    listing.add_argument("--include-cancelled", action="store_true")
     commands.add_parser("view")
     commands.add_parser("panel")
     add = commands.add_parser("add")
@@ -91,7 +93,8 @@ def transact(args):
         if root and args.command == "view":
             return render_view(root)
         if root and args.command == "list" and args.all:
-            return shared_rows(root)
+            return [row for row in shared_rows(root)
+                    if args.include_cancelled or row["status"] != "cancelled"]
         if not root and (args.command in {"view", "panel"} or getattr(args, "all", False)):
             raise QueueError("shared view needs this machine's .workflow/local.json")
         with path.with_name("." + path.stem + ".lock").open("a") as lock:
@@ -140,6 +143,8 @@ def task_cards(root):
             notes.setdefault("codex://threads/" + identifier, (folder, text))
     cards = []
     for row in shared_rows(root):
+        if row["status"] == "cancelled":
+            continue
         card = {key: row[key] for key in
                 ("id", "task", "status", "machine", "machine_label", "codex_task")}
         links = [{"label": "Chat", "url": row["codex_task"]}] if row["codex_task"] else []
@@ -199,7 +204,8 @@ def render_view(root):
 
 def change(rows, args):
     if args.command == "list":
-        return rows, False
+        return [row for row in rows
+                if args.include_cancelled or row["status"] != "cancelled"], False
     if args.command == "add":
         title = normalized(args.title)
         if not title:
@@ -238,6 +244,8 @@ def change(rows, args):
         return row, True
     if row["status"] != args.expected:
         raise QueueError(f"{args.id} is {row['status']!r}, expected {args.expected!r}")
+    if row["status"] == "cancelled" and args.target != "cancelled":
+        raise QueueError("cancelled tasks cannot resume; add explicitly authorized new work")
     if row["status"] == "starting" and args.target == "queued":
         raise QueueError("reconcile the existing dispatch first; starting cannot return directly to queued")
     if args.target in {"starting", "planning"}:

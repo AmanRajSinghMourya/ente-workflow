@@ -243,6 +243,16 @@ class QueueTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(self.path.read_bytes(), EMPTY.encode())
 
+    def test_cancelled_task_keeps_history_but_cannot_be_dispatched_or_resumed(self):
+        original = self.add("Abandoned", "Keep the decision", "--thread", THREAD)
+        cancelled = self.call("state", "Q001", "--from", "planning", "--to", "cancelled")
+        self.assertEqual(cancelled, dict(original, status="cancelled"))
+        self.assertEqual(self.call("list"), [])
+        self.assertEqual(self.call("list", "--include-cancelled"), [cancelled])
+        self.assertIsNone(self.call("claim"))
+        self.reject("state", "Q001", "--from", "cancelled", "--to", "implementing")
+        self.assertEqual(self.add("New authorized task")["id"], "Q002")
+
     def test_failed_replace_preserves_file_and_cleans_temporary(self):
         with patch.object(QUEUE.os, "replace", side_effect=OSError("replace failed")):
             with self.assertRaisesRegex(OSError, "replace failed"):

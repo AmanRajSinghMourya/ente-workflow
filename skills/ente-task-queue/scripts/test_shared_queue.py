@@ -175,4 +175,17 @@ class SharedQueueTests(unittest.TestCase):
         self.assertNotIn('[!todo]',content)
         self.assertEqual(self.runq('panel')['tasks'][0]['task'],'Shown live')
 
+    def test_cancelled_tasks_leave_shared_view_without_losing_history(self):
+        self.runq('add','--title','Abandoned','--context','Keep history','--thread',THREAD)
+        self.runq('state','Q001','--from','planning','--to','cancelled')
+        self.assertEqual(self.runq('list','--all'),[])
+        self.assertEqual(self.runq('panel')['tasks'],[])
+        self.assertNotIn('Abandoned',self.todo.read_text())
+        archived=self.runq('list','--all','--include-cancelled')
+        self.assertEqual(archived[0]['context'],'Keep history')
+        self.assertEqual(archived[0]['status'],'cancelled')
+        self.config.write_text(json.dumps({'machine':'mac-mini'}))
+        self.assertEqual(self.runq('list','--all'),[])
+        self.assertIsNone(self.runq('claim'))
+
 if __name__=='__main__': unittest.main()
