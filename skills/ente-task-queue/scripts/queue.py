@@ -151,7 +151,7 @@ def task_cards(root):
             relative = folder.relative_to(root).as_posix()
             if (folder / "PRD.md").exists():
                 links.append({"label": "PRD", "url": f"{relative}/PRD.md"})
-            pr = re.search(r"\[(?:PR|Pull request)\]\((https://github\.com/[^)]+/pull/[0-9]+)\)", note, re.I)
+            pr = re.search(r"\[(?:PR|Pull request)(?: #[0-9]+)?\]\((https://github\.com/[^)]+/pull/[0-9]+)\)", note, re.I)
             if pr:
                 links.append({"label": "PR", "url": pr[1]})
         cards.append(dict(card, links=links))

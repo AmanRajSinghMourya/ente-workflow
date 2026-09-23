@@ -176,6 +176,23 @@ class SharedQueueTests(unittest.TestCase):
         self.assertIn('.workflow/local.json',self.runq('panel',file=legacy,ok=False))
         self.assertEqual(legacy.read_bytes(),before)
 
+    def test_panel_recognizes_numbered_delivery_pr_links(self):
+        folder=self.root/'tasks/B-auth-panel';folder.mkdir(parents=True)
+        chat=f'codex://threads/{THREAD}'
+        pr='https://github.com/AmanRajSinghMourya/ente/pull/59'
+        (folder/'PRD.md').write_text(f'[Chat]({chat})\n')
+        self.runq('add','--title','Delivered task','--context','x','--thread',THREAD)
+        self.runq('state','Q001','--from','planning','--to','done')
+        for label in ('PR #59','Pull request #59'):
+            with self.subTest(label=label):
+                (folder/'BOARD.md').write_text(
+                    '[Upstream PR #412](https://github.com/example/package/pull/412)\n'
+                    f'[{label}]({pr})\n')
+                card=self.runq('panel')['tasks'][0]
+                self.assertEqual(card['status'],'done')
+                self.assertEqual([link for link in card['links'] if link['label']=='PR'],
+                                 [{'label':'PR','url':pr}])
+
     def test_controls_view_uses_live_panel_without_duplicate_list(self):
         self.config.write_text(json.dumps({'machine':'macbook-air','task_controls':True}))
         self.runq('add','--title','Shown live','--context','private context','--thread',THREAD)
