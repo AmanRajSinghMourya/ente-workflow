@@ -200,6 +200,13 @@ the current task and must be addressed or disclosed before requesting approval.
 
 ## Independent reviews and publication approval
 
+For mobile bug-fix, feature or improvement PRs opened from Aman’s accounts,
+propose one brief, clear release-note bullet and confirm its wording with Aman.
+After confirmation, add it to `mobile/apps/<app>/changes/<short-slug>.md`
+for each affected app before final review and PR publication. Include the
+note in the reviewed diff. Icon-only PRs and reviews of contributors’ PRs
+do not require adding a change note through this workflow.
+
 Once the slice is stable, follow [references/reviews.md](references/reviews.md) to
 run fresh **Codex CLI and Claude CLI** reviews of the same PRD, base, exact change
 and evidence. Use custom prompts, never Claude `/code-review`. Neither reviewer
