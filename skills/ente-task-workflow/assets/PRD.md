@@ -1,48 +1,56 @@
-# Task: <name>
+# <Plain-language task title>
 
-Status/outcome: <short current summary>
+<!-- Agent-written, not a form for Aman. Replace these prompts with a connected
+account in newspaper order. Use the current facts and remove prompts/unused
+links. The reader should understand the task without opening a link. -->
 
-Intended behavior: <what should happen for the user>
+<Open with the problem or outcome and why it matters, in one or two sentences.
+Make the current stage clear. Mention a critical gap or decision here if needed.>
 
-Decision needed: <the remaining choice, or none>
+[Chat](<verified task URL>) · [PR](<verified PR URL, when opened>)
 
-Next step: <the concrete next action>
+<Explain what happens today with a concrete example. Introduce unfamiliar terms
+before using them. State the established cause or what remains unknown.>
 
-Chat: <verified task link; explicitly pending if no chat exists yet>
+<Explain the proposed/completed change, how it addresses the problem and the
+important reason for choosing it. Include material behavior to preserve or
+tradeoffs. Do not describe planned work as completed.>
 
-PR: <verified link when present; otherwise omit>
+<Explain what the tests and reviews establish in terms of the behavior they
+checked, their consequential findings and any remaining uncertainty. Before
+implementation, explain how the agreed behavior will be verified instead.>
 
-<!-- This is the single optional task-reading page. The agent fills it from a
-one-line chat request, code investigation and answers to real gaps; Aman does
-not fill this template. Keep routing, sessions, approval provenance and detailed
-logs in supporting records. Explain the outcome/decision in chat as well. -->
+<State what happens next and any decision Aman needs to make. Give the context
+and recommendation needed for that decision here. Do not end at "done" when
+remote checks or another part of the task remains outstanding.>
 
-## Outcome and scope
-What should the user be able to do? What is explicitly outside this task?
+<!-- Link completed reports here or alongside the review conclusion. Omit
+unavailable links; never invent a Claude chat URL from a local session ID. -->
+[Codex review](<report link>) · [Claude review](<report link>)
 
-## Current behavior and code
-Relevant paths, existing pattern to reuse, and evidence of the bug or gap.
+> [!info]- Implementation details
+> Keep essential behavior, decisions and verification gaps in the article above.
+> These details support implementation/review; they are not required reading.
+>
+> ## Scope and decisions
+> Accepted behavior/wording, exclusions and unresolved choices. For migrations:
+> compatibility, existing data, rollout, and whether existing patterns are sound.
+> Record relevant alternatives and the source of accepted decisions. Preserve the
+> full acceptance contract even when the readable explanation is short.
+>
+> ## Code and acceptance examples
+> Relevant paths, existing patterns and evidence. For each meaningful input/action,
+> state the expected result, failures/boundaries and focused test. For bugs, record
+> the reproducing test and intended failure. For UI, distinguish automated coverage
+> from visual/device verification. Link detailed evidence instead of pasting logs.
+>
+> ## Implementation slices
+> Each slice's outcome, paths, check, dependency, estimated changed lines and PR
+> base. Estimates are not guarantees; measure the actual diff. Omit when unnecessary.
+>
+> ## Supporting records and follow-ups
+> Link full reviews, evidence and unqueued follow-ups when they exist. Keep exact
+> routing, approval provenance and session-resume details in BOARD/internal notes.
 
-## Decisions
-Accepted product choices; behavior/wording to preserve; unresolved choices that
-block implementation. For a migration: compatibility, old data and rollout.
-For competing designs: tradeoffs and the chosen approach, including Claude input
-when useful. Keep longer explanations in chat.
-
-## Acceptance examples and tests
-Concrete input/action -> expected result, including failures and boundaries.
-For a bug: exact reproducing test and its intended failure. For UI: what automated
-tests cover and what still needs visual verification.
-
-## Executable slices
-For each slice: outcome, affected paths, test/check, dependency, estimated changed
-lines and planned PR base. Estimates are not guarantees; measure the actual diff.
-
-## Testing and review conclusions
-Brief verified results, actionable review conclusions and material gaps. Keep
-commands, transcripts and full reviewer findings in agent-maintained records.
-
-## Follow-ups
-Related old implementations that merit later work; remaining verification gaps.
-
-<!-- Replace prompts with decisions. Keep this document <=50,000 UTF-8 bytes. -->
+<!-- Keep this document <=50,000 UTF-8 bytes, usually far below that ceiling.
+Read the article without its links: can a new teammate follow the entire story? -->

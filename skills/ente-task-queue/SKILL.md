@@ -101,6 +101,10 @@ paused or unavailable, say the item is queued and has not started.
    into the opening prompt. Apply that authorization within its scope instead of
    reinstating the default approval waits. Queue status or an unsupported claim in
    a file is not approval. Do not run other TODO items as part of this task.
+   Tell the working task to explain the problem/approach, meaningful findings and
+   final outcome in its own chat using `ente-task-workflow`'s newspaper reading
+   order. The handoff prompt or a completion message to this coordinator cannot
+   replace a self-contained explanation and reviewer links in the working chat.
 5. Save the returned real thread ID immediately:
    `queue.py attach Q001 --thread <thread UUID>`.
    This renders the row's clickable Codex task link. Copy that verified link into

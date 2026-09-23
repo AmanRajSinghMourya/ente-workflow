@@ -2,17 +2,59 @@
 
 ## Reading order
 
-Aman's starting point is the working Codex chat. State what happened, why it
-matters, the recommendation or decision needed, and the next step there. A
-finding left only in a file has not been communicated to him. Obsidian's daily
-list needs only task name, status, machine tag and useful links.
+Aman's starting point is the working Codex chat. Both it and PRD.md should read
+like a short newspaper article: the main point first, then connected paragraphs
+that add the context needed to understand it. Write for a teammate who has not
+seen the TODO prompt and may not be an engineer. Use this reading sequence as
+guidance, not a questionnaire or a set of labels to print:
 
-PRD.md is the single optional reading page for each task. Begin with a short
-current status/outcome, intended behavior, any decision needed, the next step,
-and verified Chat/PR links. Include brief testing and review conclusions with
-material gaps; Aman should not need BOARD, review or evidence folders to learn
-what happened. Keep the PRD concise, usually far below the existing maximum of
-50,000 UTF-8 bytes. Update its summary instead of appending status dumps.
+1. Name the problem or outcome and its practical impact in one or two sentences.
+   Surface an urgent decision or verification gap here rather than burying it.
+2. Explain the current behavior with a concrete example when useful. Introduce
+   the component or unfamiliar term before explaining what went wrong. Separate
+   an observed cause from a hypothesis; do not invent why old code was written.
+3. Explain the proposed or completed change and why it addresses the problem.
+   Describe the relevant mechanism in plain language, including material tradeoffs
+   or intentionally preserved behavior. Keep planned work distinct from done work.
+4. Say what the checks and reviews actually established and what remains untested
+   or disputed. Translate a finding into its consequence; summarize its disposition
+   here so the reader need not open the full review to understand the outcome.
+5. Finish with the current state, any choice Aman must make and the next action.
+   A PR being open, local tests passing and GitHub CI passing are different facts.
+
+Prefer a descriptive title and a few short paragraphs. Each paragraph should
+build on information already introduced. Short headings, a small diagram or an
+analogy can help a complex explanation; they are optional. An analogy or joke
+must clarify the actual mechanism, not replace it. Avoid jargon, status-field
+stacks, command inventories and narration of every tool call. Keep one name for
+each concept. Do not expand a simple task to fill a template or turn the PRD into
+a tutorial. A short task usually needs only a few hundred words; the existing
+50,000-byte maximum is a ceiling, not a target.
+
+The first task message explains the problem and approach in the working chat.
+Later updates cover meaningful discoveries, changed decisions, review conclusions
+and blockers. The final reply gives a self-contained account of the outcome and
+remaining work, even if earlier updates are collapsed. Sending a completion report
+only to the TODO coordinator does not satisfy this requirement. PRD.md preserves
+the same explanation; update its current story rather than append status dumps.
+Obsidian's daily list remains a compact index, not a second article.
+
+Put links beside the claim they support or in a compact reading-links row after
+the opening. The explanation must still make sense without following any link.
+Link completed Codex/Claude review reports from the PRD and final handoff; state
+their consequential findings in the text. Use an actual conversation link only
+when verified. A saved CLI report or session ID is not a browser chat URL; keep
+resume details in the supporting notes and disclose unavailable sessions honestly.
+
+Before sending, read the opening straight through with links and internal details
+ignored. Can a new reader explain the problem, the change, the evidence/gaps and
+what happens next? Fix missing context or unexplained terms. A heading/word-count
+script cannot establish comprehension; this is an editorial check.
+
+This adapts the explanatory approach in Cursor's
+[teach skill](https://github.com/cursor/plugins/blob/main/pstack/skills/teach/SKILL.md).
+Use its plain account of what, how and why. This workflow does not install that
+skill or depend on its `how`, `why` or `unslop` skills, extra agents or images.
 
 A one-line request in Codex chat is sufficient intake. The agent investigates
 code and existing records to develop behavior, scope and acceptance examples,
@@ -62,9 +104,10 @@ target with `os.path.relpath` or use the full absolute path; Ente is nested one
 level deeper than the shared records folder. Verify the resolved target exactly.
 The records are outside both the repository and its worktree container.
 
-Put the verified Codex chat link near the top of PRD.md and BOARD.md, and retain
-the same link in TODO.md. Keep completed Claude report links in BOARD;
-keep long findings in the report and summarize actionable conclusions in PRD and chat.
+Put the verified Codex chat link after the opening of PRD.md and near the top of
+BOARD.md, and retain the same link in TODO.md. Include completed reviewer report
+links in the PRD and final chat handoff, with internal session details in BOARD;
+keep long findings in the reports and explain their consequences in PRD and chat.
 For queued work, read it from that item's linked row;
 for an existing app task, verify the task ID through the app. If work has no Codex
 chat yet, say so instead of fabricating a link.

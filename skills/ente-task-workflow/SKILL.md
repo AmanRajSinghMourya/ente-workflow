@@ -5,12 +5,16 @@ description: Take an Ente bug, feature, migration, or improvement from code expl
 
 # Ente task workflow
 
-The working chat is Aman's primary reading surface. Lead with the outcome or
-problem and its user impact, then the recommendation/decision needed and next
-step. Link the PR and PRD when useful. Obsidian exposes the compact TODO and
-one optional reading page per task: PRD.md. Put the current outcome, decisions,
-next step and brief testing/review conclusions there. BOARD, evidence and raw
-reviews remain agent-maintained support, not another reading path.
+The working chat is Aman's primary reading surface. Write task explanations and
+PRDs in newspaper order: open with the problem or outcome and why it matters,
+then build a connected account of what happens, why, the proposed/completed
+change, its evidence and the next decision. A reader outside engineering should
+understand it top to bottom without opening other files. Define unfamiliar terms
+before using them; preserve uncertainty and verification gaps in plain language.
+Obsidian exposes the compact TODO and one optional reading page per task: PRD.md.
+BOARD, evidence and raw reviews remain agent-maintained support. Apply the same
+reading order to the task's first explanation, meaningful updates and final reply;
+the final reply must stand alone even when earlier updates are collapsed.
 A one-line request in Codex chat is enough to begin: expand it through code
 investigation and ask only about real gaps that sources cannot resolve. Never
 require Aman to fill a template or use a separate intake form. Use the reading order in
