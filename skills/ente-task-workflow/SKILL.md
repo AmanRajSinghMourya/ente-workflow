@@ -15,6 +15,12 @@ Obsidian exposes the compact TODO and one optional reading page per task: PRD.md
 BOARD, evidence and raw reviews remain agent-maintained support. Apply the same
 reading order to the task's first explanation, meaningful updates and final reply;
 the final reply must stand alone even when earlier updates are collapsed.
+Codex folds progress commentary under “Worked for…” after a turn. Put the whole
+user-facing explanation in the final chat reply: a concrete example, what the
+evidence establishes, the proposed or completed work, remaining gaps and the
+next decision. The PRD link is a secondary reference, not the missing body of
+the answer. Read the final reply without expanding progress or opening the PRD
+before sending it.
 A one-line request in Codex chat is enough to begin: expand it through code
 investigation and ask only about real gaps that sources cannot resolve. Never
 require Aman to fill a template or use a separate intake form. Use the reading order in
