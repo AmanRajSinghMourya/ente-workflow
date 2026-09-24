@@ -1,3 +1,6 @@
+/*
+!/.gitignore
+!/skills/
 **/.git
 **/.DS_Store
 **/__pycache__/
