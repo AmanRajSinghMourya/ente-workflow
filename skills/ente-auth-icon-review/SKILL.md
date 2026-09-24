@@ -49,7 +49,7 @@ Use one of:
 
 For authorized posting, re-read the PR head/state and your existing reviews/comments immediately before submitting. A changed head requires a fresh review; an equivalent existing result should not be duplicated. Submit approvals with an explicit reviewed commit ID using authenticated GitHub APIs/CLI. Put feedback in a PR review/comment, not in the contributor's PR description. Post once, verify the returned review/comment and report its URL; if submission is uncertain, inspect existing results before retrying.
 
-Keep the user-facing report short: verdict, decisive evidence, preview link, and whether anything was posted. Store any detailed evidence locally, outside the shared workflow Git content. Repeated corrections should become a narrow improvement to these checks or accepted examples.
+Keep the user-facing report short: verdict, decisive evidence, preview link, and whether anything was posted. Store any detailed evidence locally, outside this repository. Repeated corrections should become a narrow improvement to these checks or accepted examples.
 
 ## Reference case and limitations
 

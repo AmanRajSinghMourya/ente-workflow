@@ -1,12 +1,3 @@
-/*
-!/.gitignore
-!/README.md
-!/START-HERE.md
-!/skills/
-!/agents/
-!/.workflow/
-/.workflow/*
-!/.workflow/repository.json
 **/.git
 **/.DS_Store
 **/__pycache__/
@@ -16,14 +7,9 @@
 **/node_modules/
 **/.build/
 **/target/
-tasks/**/evidence/
-tasks/**/harness/
-tasks/**/backups/
 **/.env
 **/.env.*
 **/*.pem
 **/*.key
 **/auth.json
 **/credentials.json
-
-/.workflow/queues/.*.lock
